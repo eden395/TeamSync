@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/fragment_files.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/fragment_files.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/fragment_team.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/fragment_team.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/item_team_member.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/item_team_member.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/item_task.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/item_task.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/fragment_tasks.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/fragment_tasks.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/activity_main.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/activity_login.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/fragment_chats.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/fragment_chats.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-36:/layout/activity_signup.xml",
+        "source": "com.student.teamsync.app-main-39:/layout/activity_signup.xml"
+    }
+]

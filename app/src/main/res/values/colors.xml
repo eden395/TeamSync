@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#9E9E9E</color>
+    <color name="gray_dark">#424242</color>
+    
+    <!-- Priority Colors -->
+    <color name="priority_high">#FFB74D</color>
+    <color name="priority_medium">#FFF176</color>
+    <color name="priority_low">#81D4FA</color>
+    
+    <!-- Status Colors -->
+    <color name="status_ahead">#81C784</color>
+    <color name="status_on_track">#64B5F6</color>
+    
+    <!-- Theme Colors -->
+    <color name="primary">#1E1E1E</color>
+    <color name="primary_dark">#000000</color>
+    <color name="accent">#2196F3</color>
+    
+    <!-- Background Colors -->
+    <color name="background">#FFFFFF</color>
+    <color name="card_background">#F5F5F5</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+</resources>

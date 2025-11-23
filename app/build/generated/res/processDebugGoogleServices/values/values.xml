@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">945185033406</string>
+    <string name="google_api_key" translatable="false">AIzaSyBV6cRnh4Nveyb7Z2Kd9707JCfZwD2ycpw</string>
+    <string name="google_app_id" translatable="false">1:945185033406:android:b11e0251ea5de65085a2ef</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBV6cRnh4Nveyb7Z2Kd9707JCfZwD2ycpw</string>
+    <string name="google_storage_bucket" translatable="false">teamsync-39ff9.firebasestorage.app</string>
+    <string name="project_id" translatable="false">teamsync-39ff9</string>
+</resources>

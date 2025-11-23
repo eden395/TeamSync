@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TeamSync</string>
+    <string name="subtitle">Student Collaboration Platform</string>
+    
+    <!-- Login Screen -->
+    <string name="email">Email:</string>
+    <string name="email_hint">Email</string>
+    <string name="password">Password:</string>
+    <string name="password_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_account">Don\'t have an Account?</string>
+    <string name="sign_up">Sign up</string>
+    
+    <!-- Sign Up Screen -->
+    <string name="full_name">Full name:</string>
+    <string name="full_name_hint">Full name</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="confirm_password_hint">Password</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="terms_agreement">By clicking sign up, you agree to our</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="and">and</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    
+    <!-- Task List Screen -->
+    <string name="task_list">Task List</string>
+    <string name="add_task">+ Add Task</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
+    <string name="due">Due:</string>
+    
+    <!-- Add Task Screen -->
+    <string name="task_name">Task name:</string>
+    <string name="assigned_to">Assigned to:</string>
+    <string name="due_date">Due date:</string>
+    <string name="additional_notes">Additional notes:</string>
+    <string name="save">Save</string>
+    
+    <!-- Team Chat Screen -->
+    <string name="team_chat">Team Chat</string>
+    <string name="announcement">Announcement</string>
+    <string name="message">Message</string>
+    
+    <!-- Files Screen -->
+    <string name="files">Files</string>
+    <string name="upload">Upload</string>
+    
+    <!-- Team Accountability Screen -->
+    <string name="team_accountability">Team Accountability</string>
+    <string name="real_time_contribution">Real-time contribution metrics</string>
+    <string name="task_assigned">Task Assigned</string>
+    <string name="completion">Completion</string>
+    <string name="ahead">Ahead</string>
+    <string name="on_track">On Track</string>
+    
+    <!-- Bottom Navigation -->
+    <string name="nav_tasks">Tasks</string>
+    <string name="nav_chats">Chats</string>
+    <string name="nav_files">Files</string>
+    <string name="nav_team">Team</string>
+    
+    <!-- Error Messages -->
+    <string name="error_empty_email">Please enter your email</string>
+    <string name="error_invalid_email">Please enter a valid email</string>
+    <string name="error_empty_password">Please enter your password</string>
+    <string name="error_password_length">Password must be at least 6 characters</string>
+    <string name="error_empty_name">Please enter your full name</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_login_failed">Login failed. Please try again.</string>
+    <string name="error_signup_failed">Sign up failed. Please try again.</string>
+    <string name="login_success">Login successful!</string>
+    <string name="signup_success">Account created successfully!</string>
+</resources>

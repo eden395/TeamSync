@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TeamSync" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    
+    <style name="AppBarStyle">
+        <item name="android:background">@color/primary</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+    
+    <style name="ButtonPrimary" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@color/primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+    
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/gray_medium</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+    </style>
+</resources>

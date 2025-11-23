@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#2196F3</color>
+    <color name="background">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="card_background">#F5F5F5</color>
+    <color name="gray_dark">#424242</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#9E9E9E</color>
+    <color name="primary">#1E1E1E</color>
+    <color name="primary_dark">#000000</color>
+    <color name="priority_high">#FFB74D</color>
+    <color name="priority_low">#81D4FA</color>
+    <color name="priority_medium">#FFF176</color>
+    <color name="status_ahead">#81C784</color>
+    <color name="status_on_track">#64B5F6</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#757575</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="add_task">+ Add Task</string>
+    <string name="additional_notes">Additional notes:</string>
+    <string name="ahead">Ahead</string>
+    <string name="and">and</string>
+    <string name="announcement">Announcement</string>
+    <string name="app_name">TeamSync</string>
+    <string name="assigned_to">Assigned to:</string>
+    <string name="completion">Completion</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="confirm_password_hint">Password</string>
+    <string name="dont_have_account">Don\'t have an Account?</string>
+    <string name="due">Due:</string>
+    <string name="due_date">Due date:</string>
+    <string name="email">Email:</string>
+    <string name="email_hint">Email</string>
+    <string name="error_empty_email">Please enter your email</string>
+    <string name="error_empty_name">Please enter your full name</string>
+    <string name="error_empty_password">Please enter your password</string>
+    <string name="error_invalid_email">Please enter a valid email</string>
+    <string name="error_login_failed">Login failed. Please try again.</string>
+    <string name="error_password_length">Password must be at least 6 characters</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_signup_failed">Sign up failed. Please try again.</string>
+    <string name="files">Files</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="full_name">Full name:</string>
+    <string name="full_name_hint">Full name</string>
+    <string name="gcm_defaultSenderId" translatable="false">945185033406</string>
+    <string name="google_api_key" translatable="false">AIzaSyBV6cRnh4Nveyb7Z2Kd9707JCfZwD2ycpw</string>
+    <string name="google_app_id" translatable="false">1:945185033406:android:b11e0251ea5de65085a2ef</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBV6cRnh4Nveyb7Z2Kd9707JCfZwD2ycpw</string>
+    <string name="google_storage_bucket" translatable="false">teamsync-39ff9.firebasestorage.app</string>
+    <string name="high">High</string>
+    <string name="login">Login</string>
+    <string name="login_success">Login successful!</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="message">Message</string>
+    <string name="nav_chats">Chats</string>
+    <string name="nav_files">Files</string>
+    <string name="nav_tasks">Tasks</string>
+    <string name="nav_team">Team</string>
+    <string name="on_track">On Track</string>
+    <string name="password">Password:</string>
+    <string name="password_hint">Password</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="project_id" translatable="false">teamsync-39ff9</string>
+    <string name="real_time_contribution">Real-time contribution metrics</string>
+    <string name="save">Save</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="signup_success">Account created successfully!</string>
+    <string name="subtitle">Student Collaboration Platform</string>
+    <string name="task_assigned">Task Assigned</string>
+    <string name="task_list">Task List</string>
+    <string name="task_name">Task name:</string>
+    <string name="team_accountability">Team Accountability</string>
+    <string name="team_chat">Team Chat</string>
+    <string name="terms_agreement">By clicking sign up, you agree to our</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="upload">Upload</string>
+    <style name="AppBarStyle">
+        <item name="android:background">@color/primary</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+    <style name="ButtonPrimary" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@color/primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/gray_medium</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+    </style>
+    <style name="Theme.TeamSync" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
