@@ -8,13 +8,14 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.button.MaterialButton;
 import com.student.teamsync.R;
 import com.student.teamsync.models.Task;
 
@@ -22,33 +23,34 @@ import java.util.Calendar;
 
 public class AddTaskActivity extends AppCompatActivity {
 
-    private EditText inputTaskName, inputAssignedTo, inputDueDate;
-    private Spinner prioritySpinner;
-    private Button btnSaveTask;
+    private TextInputEditText etTaskName, etAssignedTo, etDueDate, etAdditionalNotes;
+    private MaterialButton btnSave;
+    private ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
-        inputTaskName = findViewById(R.id.inputTaskName);
-        inputAssignedTo = findViewById(R.id.inputAssignedTo);
-        inputDueDate = findViewById(R.id.inputDueDate);
-        prioritySpinner = findViewById(R.id.prioritySpinner);
-        btnSaveTask = findViewById(R.id.btnSaveTask);
+        // Initialize views with correct IDs from XML
+        etTaskName = findViewById(R.id.etTaskName);
+        etAssignedTo = findViewById(R.id.etAssignedTo);
+        etDueDate = findViewById(R.id.etDueDate);
+        etAdditionalNotes = findViewById(R.id.etAdditionalNotes);
+        btnSave = findViewById(R.id.btnSave);
+        btnBack = findViewById(R.id.btnBack);
 
-        // Priority dropdown values
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                new String[]{"High", "Medium", "Low"}
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        prioritySpinner.setAdapter(adapter);
+        // Set up date picker for due date field
+        etDueDate.setOnClickListener(v -> showDatePicker());
 
-        inputDueDate.setOnClickListener(v -> showDatePicker());
+        // You can also click the calendar icon on the TextInputLayout
+        findViewById(R.id.tilDueDate).setOnClickListener(v -> showDatePicker());
 
-        btnSaveTask.setOnClickListener(v -> saveTask());
+        // Save button click
+        btnSave.setOnClickListener(v -> saveTask());
+
+        // Back button click
+        btnBack.setOnClickListener(v -> onBackPressed());
     }
 
     private void showDatePicker() {
@@ -61,7 +63,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 this,
                 (DatePicker view, int y, int m, int d) -> {
                     String date = (m + 1) + "/" + d + "/" + y;
-                    inputDueDate.setText(date);
+                    etDueDate.setText(date);
                 },
                 year, month, day
         );
@@ -69,16 +71,21 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     private void saveTask() {
-        String name = inputTaskName.getText().toString().trim();
-        String assigned = inputAssignedTo.getText().toString().trim();
-        String due = inputDueDate.getText().toString().trim();
-        String priority = prioritySpinner.getSelectedItem().toString();
+        String name = etTaskName.getText().toString().trim();
+        String assigned = etAssignedTo.getText().toString().trim();
+        String due = etDueDate.getText().toString().trim();
+        String notes = etAdditionalNotes.getText().toString().trim();
 
+        // Validation
         if (name.isEmpty()) {
-            inputTaskName.setError("Task name required");
-            inputTaskName.requestFocus();
+            etTaskName.setError("Task name required");
+            etTaskName.requestFocus();
             return;
         }
+
+        // Note: Your XML doesn't have a priority spinner, so I'm setting default priority as "Medium"
+        // If you need priority selection, you'll need to add a Spinner to your XML
+        String priority = "Medium";
 
         Task task = new Task(
                 name,
@@ -94,7 +101,6 @@ public class AddTaskActivity extends AppCompatActivity {
         finish();
     }
 
-    // optional: provide friendly behaviour if user cancels
     @Override
     public void onBackPressed() {
         setResult(Activity.RESULT_CANCELED);

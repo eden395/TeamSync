@@ -1,6 +1,8 @@
 package com.student.teamsync.models;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private String taskName;
     private String priority;
     private String assignee;
