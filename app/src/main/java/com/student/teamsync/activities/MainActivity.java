@@ -14,6 +14,7 @@ import com.student.teamsync.fragments.ChatsFragment;
 import com.student.teamsync.fragments.FilesFragment;
 import com.student.teamsync.fragments.TasksFragment;
 import com.student.teamsync.fragments.TeamFragment;
+import com.student.teamsync.models.Project;
 import com.student.teamsync.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Add this at the beginning of onCreate, before checking login
+        Project currentProject = (Project) getIntent().getSerializableExtra("project");
+        if (currentProject != null) {
+            // Store current project for fragments to access
+            // You can use SharedPreferences or a singleton to share this data
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

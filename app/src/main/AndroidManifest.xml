@@ -35,6 +35,18 @@
 
         <activity android:name=".activities.AddTaskActivity" />
 
+        <activity
+            android:name=".activities.RoleSelectionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.ProjectsDashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.AdvisorProjectViewActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,74 @@
+[
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/fragment_team.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/fragment_team.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/item_team_member.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/item_team_member.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/activity_add_task.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/activity_add_task.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/fragment_chats.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/fragment_chats.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/item_task.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/item_task.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/item_member_progress.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/item_member_progress.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/activity_role_selection.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/activity_role_selection.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/dialog_add_member.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/dialog_add_member.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/activity_main.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/fragment_tasks.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/fragment_tasks.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/activity_signup.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/activity_signup.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/activity_login.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/activity_advisor_projects_view.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/activity_advisor_projects_view.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/activity_projects_dashboard.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/activity_projects_dashboard.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/item_file.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/item_file.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/dialog_add_project.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/dialog_add_project.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/item_project.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/item_project.xml"
+    },
+    {
+        "merged": "com.student.teamsync.app-mergeDebugResources-4:/layout/fragment_files.xml",
+        "source": "com.student.teamsync.app-main-7:/layout/fragment_files.xml"
+    }
+]

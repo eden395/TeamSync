@@ -73,4 +73,52 @@
     <string name="error_signup_failed">Sign up failed. Please try again.</string>
     <string name="login_success">Login successful!</string>
     <string name="signup_success">Account created successfully!</string>
+
+    <!-- Role Selection -->
+    <string name="select_role">Select Your Role</string>
+    <string name="project_member">Project Member</string>
+    <string name="advisor_mentor">Advisor/Mentor</string>
+    <string name="member_description">Work on projects and collaborate with team</string>
+    <string name="advisor_description">Oversee projects and monitor progress</string>
+
+    <!-- Roles -->
+    <string name="role_member">member</string>
+    <string name="role_advisor">advisor</string>
+    <string name="select_your_role">Select Your Role</string>
+    <string name="work_on_projects">Work on projects and collaborate with team</string>
+    <string name="oversee_projects">Oversee projects and monitor progress</string>
+
+    <!-- Projects Dashboard -->
+    <string name="projects">Projects</string>
+    <string name="reminders">Reminders</string>
+    <string name="add_project">Add Project</string>
+    <string name="add_member">Add Member</string>
+    <string name="add_mentor">Add Mentor</string>
+    <string name="create_project">Create New Project</string>
+
+    <!-- Advisor View -->
+    <string name="project_overview">Project Overview</string>
+    <string name="overall_progress">Overall Project Progress</string>
+    <string name="member_progress">Member Progress</string>
+    <string name="total_tasks_label">Total Tasks</string>
+    <string name="completed_label">Completed</string>
+    <string name="members_label">Members</string>
+
+    <!-- Add these to your existing strings.xml -->
+
+    <!-- Dashboard -->
+    <string name="projects_title">Projects</string>
+    <string name="reminders_title">Reminders</string>
+    <string name="logout">Logout</string>
+    <string name="add_project_label">Add Project</string>
+    <string name="reminders_coming_soon">Reminders feature coming soon</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="project_created">Project created successfully</string>
+    <string name="member_added">%s added to project</string>
+    <string name="mentor_added">%s added as mentor</string>
+    <string name="delete_project_title">Delete Project</string>
+    <string name="delete_project_message">Are you sure you want to delete %s?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="project_deleted">Project deleted</string>
 </resources>

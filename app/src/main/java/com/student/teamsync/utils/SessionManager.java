@@ -36,4 +36,25 @@ public class SessionManager {
         editor.clear();
         editor.apply();
     }
+
+    private static final String KEY_USER_ROLE = "userRole";
+    private static final String KEY_USER_ID = "userId";
+
+    public void saveUserRole(String role) {
+        editor.putString(KEY_USER_ROLE, role);
+        editor.apply();
+    }
+
+    public String getUserRole() {
+        return pref.getString(KEY_USER_ROLE, "member");
+    }
+
+    public void saveUserId(String userId) {
+        editor.putString(KEY_USER_ID, userId);
+        editor.apply();
+    }
+
+    public String getUserId() {
+        return pref.getString(KEY_USER_ID, null);
+    }
 }
