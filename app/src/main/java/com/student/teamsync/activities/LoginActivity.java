@@ -120,7 +120,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void navigateToMain() {
-        Intent intent = new Intent(LoginActivity.this, RoleSelectionActivity.class);
+        // Go directly to projects dashboard - it will check the saved view mode
+        Intent intent = new Intent(LoginActivity.this, ProjectsDashboardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

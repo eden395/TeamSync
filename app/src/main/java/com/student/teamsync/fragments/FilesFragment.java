@@ -3,10 +3,9 @@ package com.student.teamsync.fragments;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +20,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.student.teamsync.R;
 import com.student.teamsync.adapters.FileAdapter;
 import com.student.teamsync.models.FileModel;
+import com.student.teamsync.models.Project;
+import com.student.teamsync.utils.FirestoreHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,25 +34,27 @@ import java.util.UUID;
 
 public class FilesFragment extends Fragment {
 
-    private RecyclerView filesRecyclerView;
-    private MaterialButton uploadButton;
-    private FileAdapter fileAdapter;
-    private List<FileModel> fileList = new ArrayList<>();
-    private ActivityResultLauncher<Intent> filePickerLauncher;
+    private static final String TAG = "FilesFragment";
 
-    // Firebase
-    private FirebaseFirestore db;
-    private FirebaseStorage storage;
-    private StorageReference storageRef;
+    private RecyclerView filesRecyclerView;
+    private MaterialButton uploadFileButton;
+    private FileAdapter fileAdapter;
+    private List<FileModel> fileList;
+    private ActivityResultLauncher<Intent> filePickerLauncher;
+    private Project currentProject;
+    private FirestoreHelper firestoreHelper;
+    private ProgressDialog progressDialog;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize Firebase
-        db = FirebaseFirestore.getInstance();
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
+        firestoreHelper = new FirestoreHelper();
+
+        // Get project data
+        if (getActivity() != null && getActivity().getIntent() != null) {
+            currentProject = (Project) getActivity().getIntent().getSerializableExtra("project");
+        }
 
         // Register file picker launcher
         filePickerLauncher = registerForActivityResult(
@@ -72,8 +72,12 @@ public class FilesFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_files, container, false);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
 
         initializeViews(view);
         setupRecyclerView();
@@ -84,22 +88,45 @@ public class FilesFragment extends Fragment {
 
     private void initializeViews(View view) {
         filesRecyclerView = view.findViewById(R.id.filesRecyclerView);
-        uploadButton = view.findViewById(R.id.uploadButton);
+        uploadFileButton = view.findViewById(R.id.uploadButton);
 
-        uploadButton.setOnClickListener(v -> openFilePicker());
+        uploadFileButton.setOnClickListener(v -> openFilePicker());
     }
 
     private void setupRecyclerView() {
-        fileAdapter = new FileAdapter(getContext(), fileList);
+        fileList = new ArrayList<>();
+        fileAdapter = new FileAdapter(fileList);
         filesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         filesRecyclerView.setAdapter(fileAdapter);
     }
 
-    // Open file picker
+    private void loadFilesFromFirestore() {
+        if (currentProject == null) return;
+
+        progressDialog.setMessage("Loading files...");
+        progressDialog.show();
+
+        firestoreHelper.getProjectFiles(currentProject.getProjectId(), new FirestoreHelper.FileCallback() {
+            @Override
+            public void onSuccess(List<FileModel> files) {
+                progressDialog.dismiss();
+                fileList.clear();
+                fileList.addAll(files);
+                fileAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(String error) {
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "Error loading files: " + error,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void openFilePicker() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
         String[] mimeTypes = {
                 "application/pdf",
                 "application/msword",
@@ -108,98 +135,91 @@ public class FilesFragment extends Fragment {
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "application/vnd.ms-powerpoint",
                 "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                "image/*"
+                "image/*",
+                "text/plain"
         };
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         filePickerLauncher.launch(Intent.createChooser(intent, "Select File"));
     }
 
-    // Upload file to Firebase Storage
     private void uploadFileToFirebase(Uri fileUri) {
-        ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
-        progressDialog.setMessage("Please wait...");
-        progressDialog.setCancelable(false);
+        if (currentProject == null) {
+            Toast.makeText(getContext(), "No project selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressDialog.setMessage("Uploading file...");
         progressDialog.show();
 
+        // Get file name
         String fileName = getFileName(fileUri);
-        String fileId = UUID.randomUUID().toString();
+        if (fileName == null) {
+            fileName = "file_" + System.currentTimeMillis();
+        }
 
-        // Create reference to Firebase Storage
-        StorageReference fileRef = storageRef.child("project_files/" + fileId + "_" + fileName);
+        // Create unique file name
+        String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
 
-        // Upload file
+        // Upload to Firebase Storage
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference fileRef = storageRef.child("project_files/" + uniqueFileName);
+
+        String finalFileName = fileName;
         fileRef.putFile(fileUri)
-                .addOnProgressListener(taskSnapshot -> {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                    progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                .addOnProgressListener(snapshot -> {
+                    double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                    progressDialog.setMessage("Uploading: " + (int) progress + "%");
                 })
                 .addOnSuccessListener(taskSnapshot -> {
                     // Get download URL
-                    fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        String downloadUrl = uri.toString();
+                    fileRef.getDownloadUrl().addOnSuccessListener(downloadUri -> {
+                        // Save file metadata to Firestore
+                        FileModel file = new FileModel(finalFileName, downloadUri.toString(),
+                                System.currentTimeMillis());
 
-                        // Save file info to Firestore
-                        saveFileToFirestore(fileName, downloadUrl);
-
-                        progressDialog.dismiss();
-                        Toast.makeText(getContext(), "File uploaded successfully", Toast.LENGTH_SHORT).show();
+                        firestoreHelper.saveFileMetadata(currentProject.getProjectId(), file,
+                                new FirestoreHelper.OnCompleteListener() {
+                                    @Override
+                                    public void onComplete(boolean success, String message) {
+                                        progressDialog.dismiss();
+                                        if (success) {
+                                            Toast.makeText(getContext(), "File uploaded successfully",
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getContext(), "Error: " + message,
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                     });
                 })
                 .addOnFailureListener(e -> {
                     progressDialog.dismiss();
-                    Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Upload failed", e);
+                    Toast.makeText(getContext(), "Upload failed: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                 });
     }
 
-    // Save file metadata to Firestore
-    private void saveFileToFirestore(String name, String url) {
-        FileModel file = new FileModel(name, url, System.currentTimeMillis());
-
-        db.collection("files")
-                .add(file)
-                .addOnSuccessListener(documentReference -> {
-                    loadFilesFromFirestore();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Failed to save file info", Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    // Load files from Firestore
-    private void loadFilesFromFirestore() {
-        db.collection("files")
-                .orderBy("uploadedAt", Query.Direction.DESCENDING)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    fileList.clear();
-                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                        FileModel file = doc.toObject(FileModel.class);
-                        fileList.add(file);
-                    }
-                    fileAdapter.notifyDataSetChanged();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Failed to load files", Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    // Get file name from URI
     private String getFileName(Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {
-            try (Cursor cursor = getActivity().getContentResolver()
+            try (android.database.Cursor cursor = getContext().getContentResolver()
                     .query(uri, null, null, null, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
-                    int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-                    if (index != -1) {
-                        result = cursor.getString(index);
+                    int nameIndex = cursor.getColumnIndex(android.provider.OpenableColumns.DISPLAY_NAME);
+                    if (nameIndex >= 0) {
+                        result = cursor.getString(nameIndex);
                     }
                 }
             }
         }
         if (result == null) {
-            result = uri.getLastPathSegment();
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
         }
         return result;
     }

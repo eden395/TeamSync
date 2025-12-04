@@ -123,4 +123,9 @@
     <string name="project_deleted">Project deleted</string>
     <string name="download_file">download_file</string>
     <string name="file_name">file_name</string>
+    <string name="view_projects">View Projects</string>
+    <string name="view_advisees">View Advisees</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="back">Back</string>
 </resources>

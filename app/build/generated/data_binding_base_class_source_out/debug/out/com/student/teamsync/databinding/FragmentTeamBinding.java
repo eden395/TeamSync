@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.button.MaterialButton;
 import com.student.teamsync.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,11 +21,15 @@ public final class FragmentTeamBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final MaterialButton addMemberButton;
+
+  @NonNull
   public final RecyclerView teamRecyclerView;
 
   private FragmentTeamBinding(@NonNull LinearLayout rootView,
-      @NonNull RecyclerView teamRecyclerView) {
+      @NonNull MaterialButton addMemberButton, @NonNull RecyclerView teamRecyclerView) {
     this.rootView = rootView;
+    this.addMemberButton = addMemberButton;
     this.teamRecyclerView = teamRecyclerView;
   }
 
@@ -55,13 +60,19 @@ public final class FragmentTeamBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.addMemberButton;
+      MaterialButton addMemberButton = ViewBindings.findChildViewById(rootView, id);
+      if (addMemberButton == null) {
+        break missingId;
+      }
+
       id = R.id.teamRecyclerView;
       RecyclerView teamRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (teamRecyclerView == null) {
         break missingId;
       }
 
-      return new FragmentTeamBinding((LinearLayout) rootView, teamRecyclerView);
+      return new FragmentTeamBinding((LinearLayout) rootView, addMemberButton, teamRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

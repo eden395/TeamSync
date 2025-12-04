@@ -1,9 +1,9 @@
 package com.student.teamsync.activities;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.student.teamsync.R;
 import com.student.teamsync.adapters.ProjectAdapter;
 import com.student.teamsync.models.Project;
+import com.student.teamsync.utils.FirestoreHelper;
 import com.student.teamsync.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -33,11 +34,13 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
     private RecyclerView rvProjects;
     private FloatingActionButton fabAddProject;
     private MaterialButton btnProjects, btnReminders;
-    private ImageView btnLogout;
+    private ImageView btnLogout, btnProfile;
     private ProjectAdapter projectAdapter;
     private List<Project> projectList;
     private SessionManager sessionManager;
+    private FirestoreHelper firestoreHelper;
     private boolean isAdvisorMode;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +48,14 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
         setContentView(R.layout.activity_projects_dashboard);
 
         sessionManager = new SessionManager(this);
-        isAdvisorMode = "advisor".equals(sessionManager.getUserRole());
+        firestoreHelper = new FirestoreHelper();
+        String userRole = sessionManager.getUserRole();
+        isAdvisorMode = getString(R.string.role_advisor).equals(userRole);
 
         initializeViews();
         setupRecyclerView();
-        loadSampleProjects();
         setupClickListeners();
+        loadProjectsFromFirestore();
 
         // Hide FAB for advisors
         if (isAdvisorMode) {
@@ -63,7 +68,18 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
         fabAddProject = findViewById(R.id.fabAddProject);
         btnProjects = findViewById(R.id.btnProjects);
         btnReminders = findViewById(R.id.btnReminders);
-        btnLogout = findViewById(R.id.btnLogout); // ImageView, not MaterialButton
+        btnLogout = findViewById(R.id.btnLogout);
+        btnProfile = findViewById(R.id.btnProfile);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+
+        // Profile button click
+        btnProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void setupRecyclerView() {
@@ -73,20 +89,26 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
         rvProjects.setAdapter(projectAdapter);
     }
 
-    private void loadSampleProjects() {
-        // Sample projects
-        projectList.add(new Project("1", "Project 1", "IT57", "10/14/2025"));
-        projectList.add(new Project("2", "Project 2", "IT57", "10/14/2025"));
-        projectList.add(new Project("3", "Project 3", "IT57", "10/14/2025"));
+    private void loadProjectsFromFirestore() {
+        progressDialog.show();
+        String currentUserId = sessionManager.getUserEmail();
 
-        // Set sample progress for advisor view
-        if (isAdvisorMode) {
-            projectList.get(0).setProgressPercentage(75);
-            projectList.get(1).setProgressPercentage(60);
-            projectList.get(2).setProgressPercentage(85);
-        }
+        firestoreHelper.getUserProjects(currentUserId, isAdvisorMode, new FirestoreHelper.ProjectCallback() {
+            @Override
+            public void onSuccess(List<Project> projects) {
+                progressDialog.dismiss();
+                projectList.clear();
+                projectList.addAll(projects);
+                projectAdapter.notifyDataSetChanged();
+            }
 
-        projectAdapter.notifyDataSetChanged();
+            @Override
+            public void onError(String error) {
+                progressDialog.dismiss();
+                Toast.makeText(ProjectsDashboardActivity.this,
+                        "Error loading projects: " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupClickListeners() {
@@ -138,13 +160,104 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
                 return;
             }
 
-            String projectId = UUID.randomUUID().toString();
-            Project newProject = new Project(projectId, name, code, dueDate);
-            projectList.add(newProject);
-            projectAdapter.notifyItemInserted(projectList.size() - 1);
+            progressDialog.setMessage("Creating project...");
+            progressDialog.show();
 
-            Toast.makeText(this, "Project created successfully", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
+            String projectId = UUID.randomUUID().toString();
+            String currentUserId = sessionManager.getUserEmail();
+
+            Project newProject = new Project(projectId, name, code, dueDate, currentUserId);
+
+            firestoreHelper.createProject(newProject, new FirestoreHelper.OnCompleteListener() {
+                @Override
+                public void onComplete(boolean success, String message) {
+                    progressDialog.dismiss();
+                    if (success) {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                "Project created successfully", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        // No need to manually add - Firestore listener will update the list
+                    } else {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                "Error: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        });
+
+        dialog.show();
+    }
+
+    private void showEditProjectDialog(Project project) {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_project, null);
+
+        TextInputEditText etProjectName = dialogView.findViewById(R.id.etProjectName);
+        TextInputEditText etCourseCode = dialogView.findViewById(R.id.etCourseCode);
+        TextInputEditText etProjectDueDate = dialogView.findViewById(R.id.etProjectDueDate);
+        MaterialButton btnCreate = dialogView.findViewById(R.id.btnCreateProject);
+
+        // Pre-fill with existing data
+        etProjectName.setText(project.getProjectName());
+        etCourseCode.setText(project.getCourseCode());
+        etProjectDueDate.setText(project.getDueDate());
+
+        // Change button text
+        btnCreate.setText("Update Project");
+
+        // Date picker for due date
+        etProjectDueDate.setOnClickListener(v -> {
+            Calendar c = Calendar.getInstance();
+            DatePickerDialog datePicker = new DatePickerDialog(
+                    this,
+                    (view, year, month, dayOfMonth) -> {
+                        String date = (month + 1) + "/" + dayOfMonth + "/" + year;
+                        etProjectDueDate.setText(date);
+                    },
+                    c.get(Calendar.YEAR),
+                    c.get(Calendar.MONTH),
+                    c.get(Calendar.DAY_OF_MONTH)
+            );
+            datePicker.show();
+        });
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create();
+
+        dialogView.findViewById(R.id.btnCancelProject).setOnClickListener(v -> dialog.dismiss());
+
+        btnCreate.setOnClickListener(v -> {
+            String name = etProjectName.getText().toString().trim();
+            String code = etCourseCode.getText().toString().trim();
+            String dueDate = etProjectDueDate.getText().toString().trim();
+
+            if (name.isEmpty() || code.isEmpty() || dueDate.isEmpty()) {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            progressDialog.setMessage("Updating project...");
+            progressDialog.show();
+
+            // Update project
+            project.setProjectName(name);
+            project.setCourseCode(code);
+            project.setDueDate(dueDate);
+
+            firestoreHelper.updateProject(project, new FirestoreHelper.OnCompleteListener() {
+                @Override
+                public void onComplete(boolean success, String message) {
+                    progressDialog.dismiss();
+                    if (success) {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                "Project updated successfully", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                "Error: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         });
 
         dialog.show();
@@ -172,23 +285,23 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
         if (isAdvisorMode) {
             popup.getMenu().add("View Details");
         } else {
+            popup.getMenu().add("Edit Project");
             popup.getMenu().add("Add Member");
             popup.getMenu().add("Add Mentor");
-            popup.getMenu().add("Edit Project");
             popup.getMenu().add("Delete Project");
         }
 
         popup.setOnMenuItemClickListener(item -> {
             String title = item.getTitle().toString();
             switch (title) {
+                case "Edit Project":
+                    showEditProjectDialog(project);
+                    break;
                 case "Add Member":
                     showAddMemberDialog(project);
                     break;
                 case "Add Mentor":
                     showAddMentorDialog(project);
-                    break;
-                case "Edit Project":
-                    Toast.makeText(this, "Edit project: " + project.getProjectName(), Toast.LENGTH_SHORT).show();
                     break;
                 case "Delete Project":
                     deleteProject(project);
@@ -224,10 +337,26 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
                 return;
             }
 
-            // Add member to project (in real app, this would be saved to database)
+            progressDialog.setMessage("Adding member...");
+            progressDialog.show();
+
+            // Add member to project
             project.getMemberIds().add(email);
-            Toast.makeText(this, name + " added to project", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
+
+            firestoreHelper.updateProject(project, new FirestoreHelper.OnCompleteListener() {
+                @Override
+                public void onComplete(boolean success, String message) {
+                    progressDialog.dismiss();
+                    if (success) {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                name + " added to project", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                "Error: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         });
 
         dialog.show();
@@ -236,14 +365,13 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
     private void showAddMentorDialog(Project project) {
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_member, null);
 
-        // Change title
-        ((android.widget.TextView) dialogView.findViewById(R.id.btnAdd)).setText("Add Mentor");
-
         TextInputEditText etMemberEmail = dialogView.findViewById(R.id.etMemberEmail);
         TextInputEditText etMemberName = dialogView.findViewById(R.id.etMemberName);
+        MaterialButton btnAdd = dialogView.findViewById(R.id.btnAdd);
 
         etMemberEmail.setHint("Mentor Email");
         etMemberName.setHint("Mentor Name");
+        btnAdd.setText("Add Mentor");
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
@@ -251,7 +379,7 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
 
         dialogView.findViewById(R.id.btnCancel).setOnClickListener(v -> dialog.dismiss());
 
-        dialogView.findViewById(R.id.btnAdd).setOnClickListener(v -> {
+        btnAdd.setOnClickListener(v -> {
             String email = etMemberEmail.getText().toString().trim();
             String name = etMemberName.getText().toString().trim();
 
@@ -260,10 +388,26 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
                 return;
             }
 
-            // Add mentor to project (in real app, this would be saved to database)
+            progressDialog.setMessage("Adding mentor...");
+            progressDialog.show();
+
+            // Add mentor to project
             project.getMentorIds().add(email);
-            Toast.makeText(this, name + " added as mentor", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
+
+            firestoreHelper.updateProject(project, new FirestoreHelper.OnCompleteListener() {
+                @Override
+                public void onComplete(boolean success, String message) {
+                    progressDialog.dismiss();
+                    if (success) {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                name + " added as mentor", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(ProjectsDashboardActivity.this,
+                                "Error: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         });
 
         dialog.show();
@@ -274,10 +418,23 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
                 .setTitle("Delete Project")
                 .setMessage("Are you sure you want to delete " + project.getProjectName() + "?")
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    int position = projectList.indexOf(project);
-                    projectList.remove(project);
-                    projectAdapter.notifyItemRemoved(position);
-                    Toast.makeText(this, "Project deleted", Toast.LENGTH_SHORT).show();
+                    progressDialog.setMessage("Deleting project...");
+                    progressDialog.show();
+
+                    firestoreHelper.deleteProject(project.getProjectId(),
+                            new FirestoreHelper.OnCompleteListener() {
+                                @Override
+                                public void onComplete(boolean success, String message) {
+                                    progressDialog.dismiss();
+                                    if (success) {
+                                        Toast.makeText(ProjectsDashboardActivity.this,
+                                                "Project deleted", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(ProjectsDashboardActivity.this,
+                                                "Error: " + message, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 })
                 .setNegativeButton("Cancel", null)
                 .show();

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,12 +25,17 @@ public final class FragmentTasksBinding implements ViewBinding {
   public final MaterialButton addTaskButton;
 
   @NonNull
+  public final Spinner spinnerTaskView;
+
+  @NonNull
   public final RecyclerView tasksRecyclerView;
 
   private FragmentTasksBinding(@NonNull LinearLayout rootView,
-      @NonNull MaterialButton addTaskButton, @NonNull RecyclerView tasksRecyclerView) {
+      @NonNull MaterialButton addTaskButton, @NonNull Spinner spinnerTaskView,
+      @NonNull RecyclerView tasksRecyclerView) {
     this.rootView = rootView;
     this.addTaskButton = addTaskButton;
+    this.spinnerTaskView = spinnerTaskView;
     this.tasksRecyclerView = tasksRecyclerView;
   }
 
@@ -66,13 +72,20 @@ public final class FragmentTasksBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.spinnerTaskView;
+      Spinner spinnerTaskView = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerTaskView == null) {
+        break missingId;
+      }
+
       id = R.id.tasksRecyclerView;
       RecyclerView tasksRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (tasksRecyclerView == null) {
         break missingId;
       }
 
-      return new FragmentTasksBinding((LinearLayout) rootView, addTaskButton, tasksRecyclerView);
+      return new FragmentTasksBinding((LinearLayout) rootView, addTaskButton, spinnerTaskView,
+          tasksRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

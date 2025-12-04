@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="priority_levels">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
     <color name="accent">#2196F3</color>
     <color name="background">#FFFFFF</color>
     <color name="black">#FF000000</color>
@@ -31,7 +36,9 @@
     <string name="announcement">Announcement</string>
     <string name="app_name">TeamSync</string>
     <string name="assigned_to">Assigned to:</string>
+    <string name="back">Back</string>
     <string name="cancel">Cancel</string>
+    <string name="change_password">Change Password</string>
     <string name="completed_label">Completed</string>
     <string name="completion">Completion</string>
     <string name="confirm_password">Confirm Password:</string>
@@ -44,6 +51,7 @@
     <string name="download_file">download_file</string>
     <string name="due">Due:</string>
     <string name="due_date">Due date:</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="email">Email:</string>
     <string name="email_hint">Email</string>
     <string name="error_empty_email">Please enter your email</string>
@@ -116,6 +124,8 @@
     <string name="terms_of_service">Terms of Service</string>
     <string name="total_tasks_label">Total Tasks</string>
     <string name="upload">Upload</string>
+    <string name="view_advisees">View Advisees</string>
+    <string name="view_projects">View Projects</string>
     <string name="work_on_projects">Work on projects and collaborate with team</string>
     <style name="AppBarStyle">
         <item name="android:background">@color/primary</item>

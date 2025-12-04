@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ScrollView;
+import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
@@ -21,7 +21,7 @@ import java.lang.String;
 
 public final class ActivityAddTaskBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
   public final ImageView btnBack;
@@ -33,75 +33,39 @@ public final class ActivityAddTaskBinding implements ViewBinding {
   public final TextInputEditText etAdditionalNotes;
 
   @NonNull
-  public final TextInputEditText etAssignedTo;
-
-  @NonNull
   public final TextInputEditText etDueDate;
 
   @NonNull
   public final TextInputEditText etTaskName;
 
   @NonNull
-  public final TextInputLayout tilAdditionalNotes;
+  public final Spinner spinnerAssignTo;
 
   @NonNull
-  public final TextInputLayout tilAssignedTo;
+  public final Spinner spinnerPriority;
 
   @NonNull
   public final TextInputLayout tilDueDate;
 
-  @NonNull
-  public final TextInputLayout tilTaskName;
-
-  @NonNull
-  public final ConstraintLayout topBar;
-
-  @NonNull
-  public final TextView tvAddTaskTitle;
-
-  @NonNull
-  public final TextView tvAdditionalNotesLabel;
-
-  @NonNull
-  public final TextView tvAssignedToLabel;
-
-  @NonNull
-  public final TextView tvDueDateLabel;
-
-  @NonNull
-  public final TextView tvTaskNameLabel;
-
-  private ActivityAddTaskBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView btnBack,
+  private ActivityAddTaskBinding(@NonNull ScrollView rootView, @NonNull ImageView btnBack,
       @NonNull MaterialButton btnSave, @NonNull TextInputEditText etAdditionalNotes,
-      @NonNull TextInputEditText etAssignedTo, @NonNull TextInputEditText etDueDate,
-      @NonNull TextInputEditText etTaskName, @NonNull TextInputLayout tilAdditionalNotes,
-      @NonNull TextInputLayout tilAssignedTo, @NonNull TextInputLayout tilDueDate,
-      @NonNull TextInputLayout tilTaskName, @NonNull ConstraintLayout topBar,
-      @NonNull TextView tvAddTaskTitle, @NonNull TextView tvAdditionalNotesLabel,
-      @NonNull TextView tvAssignedToLabel, @NonNull TextView tvDueDateLabel,
-      @NonNull TextView tvTaskNameLabel) {
+      @NonNull TextInputEditText etDueDate, @NonNull TextInputEditText etTaskName,
+      @NonNull Spinner spinnerAssignTo, @NonNull Spinner spinnerPriority,
+      @NonNull TextInputLayout tilDueDate) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnSave = btnSave;
     this.etAdditionalNotes = etAdditionalNotes;
-    this.etAssignedTo = etAssignedTo;
     this.etDueDate = etDueDate;
     this.etTaskName = etTaskName;
-    this.tilAdditionalNotes = tilAdditionalNotes;
-    this.tilAssignedTo = tilAssignedTo;
+    this.spinnerAssignTo = spinnerAssignTo;
+    this.spinnerPriority = spinnerPriority;
     this.tilDueDate = tilDueDate;
-    this.tilTaskName = tilTaskName;
-    this.topBar = topBar;
-    this.tvAddTaskTitle = tvAddTaskTitle;
-    this.tvAdditionalNotesLabel = tvAdditionalNotesLabel;
-    this.tvAssignedToLabel = tvAssignedToLabel;
-    this.tvDueDateLabel = tvDueDateLabel;
-    this.tvTaskNameLabel = tvTaskNameLabel;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -144,12 +108,6 @@ public final class ActivityAddTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.etAssignedTo;
-      TextInputEditText etAssignedTo = ViewBindings.findChildViewById(rootView, id);
-      if (etAssignedTo == null) {
-        break missingId;
-      }
-
       id = R.id.etDueDate;
       TextInputEditText etDueDate = ViewBindings.findChildViewById(rootView, id);
       if (etDueDate == null) {
@@ -162,15 +120,15 @@ public final class ActivityAddTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tilAdditionalNotes;
-      TextInputLayout tilAdditionalNotes = ViewBindings.findChildViewById(rootView, id);
-      if (tilAdditionalNotes == null) {
+      id = R.id.spinnerAssignTo;
+      Spinner spinnerAssignTo = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerAssignTo == null) {
         break missingId;
       }
 
-      id = R.id.tilAssignedTo;
-      TextInputLayout tilAssignedTo = ViewBindings.findChildViewById(rootView, id);
-      if (tilAssignedTo == null) {
+      id = R.id.spinnerPriority;
+      Spinner spinnerPriority = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerPriority == null) {
         break missingId;
       }
 
@@ -180,52 +138,8 @@ public final class ActivityAddTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tilTaskName;
-      TextInputLayout tilTaskName = ViewBindings.findChildViewById(rootView, id);
-      if (tilTaskName == null) {
-        break missingId;
-      }
-
-      id = R.id.topBar;
-      ConstraintLayout topBar = ViewBindings.findChildViewById(rootView, id);
-      if (topBar == null) {
-        break missingId;
-      }
-
-      id = R.id.tvAddTaskTitle;
-      TextView tvAddTaskTitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvAddTaskTitle == null) {
-        break missingId;
-      }
-
-      id = R.id.tvAdditionalNotesLabel;
-      TextView tvAdditionalNotesLabel = ViewBindings.findChildViewById(rootView, id);
-      if (tvAdditionalNotesLabel == null) {
-        break missingId;
-      }
-
-      id = R.id.tvAssignedToLabel;
-      TextView tvAssignedToLabel = ViewBindings.findChildViewById(rootView, id);
-      if (tvAssignedToLabel == null) {
-        break missingId;
-      }
-
-      id = R.id.tvDueDateLabel;
-      TextView tvDueDateLabel = ViewBindings.findChildViewById(rootView, id);
-      if (tvDueDateLabel == null) {
-        break missingId;
-      }
-
-      id = R.id.tvTaskNameLabel;
-      TextView tvTaskNameLabel = ViewBindings.findChildViewById(rootView, id);
-      if (tvTaskNameLabel == null) {
-        break missingId;
-      }
-
-      return new ActivityAddTaskBinding((ConstraintLayout) rootView, btnBack, btnSave,
-          etAdditionalNotes, etAssignedTo, etDueDate, etTaskName, tilAdditionalNotes, tilAssignedTo,
-          tilDueDate, tilTaskName, topBar, tvAddTaskTitle, tvAdditionalNotesLabel,
-          tvAssignedToLabel, tvDueDateLabel, tvTaskNameLabel);
+      return new ActivityAddTaskBinding((ScrollView) rootView, btnBack, btnSave, etAdditionalNotes,
+          etDueDate, etTaskName, spinnerAssignTo, spinnerPriority, tilDueDate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

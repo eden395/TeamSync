@@ -1,263 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/white"
+    android:fillViewport="true">
 
-    <!-- Top Bar -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topBar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#2B2B2B"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="124dp"
-            android:text="TeamSync"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btnBack"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Content ScrollView -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topBar">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!-- Top Bar -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <!-- Add Task Title -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="@string/back"
+                android:clickable="true"
+                android:focusable="true" />
+
             <TextView
-                android:id="@+id/tvAddTaskTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Add Task"
-                android:textColor="#000000"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- Task Name Label -->
-            <TextView
-                android:id="@+id/tvTaskNameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Task name:"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAddTaskTitle" />
-
-            <!-- Task Name Input -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilTaskName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:boxCornerRadiusBottomEnd="4dp"
-                app:boxCornerRadiusBottomStart="4dp"
-                app:boxCornerRadiusTopEnd="4dp"
-                app:boxCornerRadiusTopStart="4dp"
-                app:boxStrokeColor="#CCCCCC"
-                app:boxStrokeWidth="1dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTaskNameLabel">
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:text="@string/add_task"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <!-- Form Content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Task Name -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/EditTextStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etTaskName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#F8F8F8"
+                    android:hint="@string/task_name"
                     android:inputType="text"
-                    android:padding="14dp"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Assigned To Label -->
+            <!-- Priority -->
             <TextView
-                android:id="@+id/tvAssignedToLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Assigned to:"
-                android:textColor="#000000"
+                android:text="Priority"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilTaskName" />
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="8dp" />
 
-            <!-- Assigned To Input -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAssignedTo"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:boxCornerRadiusBottomEnd="4dp"
-                app:boxCornerRadiusBottomStart="4dp"
-                app:boxCornerRadiusTopEnd="4dp"
-                app:boxCornerRadiusTopStart="4dp"
-                app:boxStrokeColor="#CCCCCC"
-                app:boxStrokeWidth="1dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAssignedToLabel">
+            <Spinner
+                android:id="@+id/spinnerPriority"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etAssignedTo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#F8F8F8"
-                    android:inputType="text"
-                    android:padding="14dp"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Due Date Label -->
+            <!-- Assign To -->
             <TextView
-                android:id="@+id/tvDueDateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Due date:"
-                android:textColor="#000000"
+                android:text="Assign To"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilAssignedTo" />
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="8dp" />
 
-            <!-- Due Date Input with Calendar Icon -->
+            <Spinner
+                android:id="@+id/spinnerAssignTo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Due Date -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDueDate"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:boxCornerRadiusBottomEnd="4dp"
-                app:boxCornerRadiusBottomStart="4dp"
-                app:boxCornerRadiusTopEnd="4dp"
-                app:boxCornerRadiusTopStart="4dp"
-                app:boxStrokeColor="#CCCCCC"
-                app:boxStrokeWidth="1dp"
-                app:endIconDrawable="@drawable/ic_calendar"
+                android:layout_marginBottom="16dp"
+                style="@style/EditTextStyle"
                 app:endIconMode="custom"
-                app:endIconTint="#000000"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvDueDateLabel">
+                app:endIconDrawable="@android:drawable/ic_menu_my_calendar">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDueDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#F8F8F8"
+                    android:hint="Due Date"
                     android:focusable="false"
-                    android:inputType="none"
-                    android:padding="14dp"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:clickable="true"
+                    android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Additional Notes Label -->
-            <TextView
-                android:id="@+id/tvAdditionalNotesLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Additional notes:"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilDueDate" />
-
-            <!-- Additional Notes Input -->
+            <!-- Additional Notes -->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAdditionalNotes"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:boxCornerRadiusBottomEnd="4dp"
-                app:boxCornerRadiusBottomStart="4dp"
-                app:boxCornerRadiusTopEnd="4dp"
-                app:boxCornerRadiusTopStart="4dp"
-                app:boxStrokeColor="#CCCCCC"
-                app:boxStrokeWidth="1dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAdditionalNotesLabel">
+                android:layout_marginBottom="24dp"
+                style="@style/EditTextStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etAdditionalNotes"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:background="#F8F8F8"
-                    android:gravity="top|start"
+                    android:layout_height="wrap_content"
+                    android:hint="Additional Notes (Optional)"
                     android:inputType="textMultiLine"
-                    android:padding="14dp"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:minLines="3"
+                    android:gravity="top"
+                    android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Save Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSave"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="24dp"
-                android:text="Save"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:backgroundTint="#1A1A1A"
-                app:cornerRadius="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilAdditionalNotes"
-                app:layout_constraintVertical_bias="1.0" />
+                android:text="Save Task"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/primary"
+                app:cornerRadius="8dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

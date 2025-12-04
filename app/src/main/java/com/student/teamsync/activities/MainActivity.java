@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.student.teamsync.R;
 import com.student.teamsync.fragments.ChatsFragment;
 import com.student.teamsync.fragments.FilesFragment;
+import com.student.teamsync.fragments.ProfileFragment;
 import com.student.teamsync.fragments.TasksFragment;
 import com.student.teamsync.fragments.TeamFragment;
 import com.student.teamsync.models.Project;
@@ -26,8 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sessionManager = new SessionManager(this);
 
-        // Add this at the beginning of onCreate, before checking login
+        // Check if user is logged in
+        if (!sessionManager.isLoggedIn()) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        // before checking login
         Project currentProject = (Project) getIntent().getSerializableExtra("project");
         if (currentProject != null) {
             // Store current project for fragments to access
@@ -64,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
     private void setupBottomNavigation() {
         bottomNavigation.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
-
             int itemId = item.getItemId();
+
             if (itemId == R.id.nav_tasks) {
                 selectedFragment = new TasksFragment();
             } else if (itemId == R.id.nav_chats) {

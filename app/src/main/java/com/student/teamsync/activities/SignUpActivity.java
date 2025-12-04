@@ -73,17 +73,18 @@ public class SignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            // Update user profile with name
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(name)
                                     .build();
 
-                            user.updateProfile(profileUpdates).addOnCompleteListener(profileTask -> {
-                                sessionManager.createLoginSession(user.getEmail());
-                                Toast.makeText(SignUpActivity.this, 
-                                    getString(R.string.signup_success), 
-                                    Toast.LENGTH_SHORT).show();
-                                navigateToMain();
+                            user.updateProfile(profileUpdates).addOnCompleteListener(updateTask -> {
+                                sessionManager.createLoginSession(email);
+
+                                // First time user - go to role selection
+                                Intent intent = new Intent(SignUpActivity.this, RoleSelectionActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
                             });
                         }
                     } else {

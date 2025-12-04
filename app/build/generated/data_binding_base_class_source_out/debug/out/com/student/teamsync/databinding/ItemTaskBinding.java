@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,25 +22,33 @@ public final class ItemTaskBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
-  public final TextView assigneeText;
-
-  @NonNull
-  public final TextView priorityBadge;
+  public final ImageView btnTaskMenu;
 
   @NonNull
   public final CheckBox taskCheckbox;
 
   @NonNull
-  public final TextView taskNameText;
+  public final TextView tvAssignee;
 
-  private ItemTaskBinding(@NonNull MaterialCardView rootView, @NonNull TextView assigneeText,
-      @NonNull TextView priorityBadge, @NonNull CheckBox taskCheckbox,
-      @NonNull TextView taskNameText) {
+  @NonNull
+  public final TextView tvDueDate;
+
+  @NonNull
+  public final TextView tvPriority;
+
+  @NonNull
+  public final TextView tvTaskName;
+
+  private ItemTaskBinding(@NonNull MaterialCardView rootView, @NonNull ImageView btnTaskMenu,
+      @NonNull CheckBox taskCheckbox, @NonNull TextView tvAssignee, @NonNull TextView tvDueDate,
+      @NonNull TextView tvPriority, @NonNull TextView tvTaskName) {
     this.rootView = rootView;
-    this.assigneeText = assigneeText;
-    this.priorityBadge = priorityBadge;
+    this.btnTaskMenu = btnTaskMenu;
     this.taskCheckbox = taskCheckbox;
-    this.taskNameText = taskNameText;
+    this.tvAssignee = tvAssignee;
+    this.tvDueDate = tvDueDate;
+    this.tvPriority = tvPriority;
+    this.tvTaskName = tvTaskName;
   }
 
   @Override
@@ -69,15 +78,9 @@ public final class ItemTaskBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.assigneeText;
-      TextView assigneeText = ViewBindings.findChildViewById(rootView, id);
-      if (assigneeText == null) {
-        break missingId;
-      }
-
-      id = R.id.priorityBadge;
-      TextView priorityBadge = ViewBindings.findChildViewById(rootView, id);
-      if (priorityBadge == null) {
+      id = R.id.btnTaskMenu;
+      ImageView btnTaskMenu = ViewBindings.findChildViewById(rootView, id);
+      if (btnTaskMenu == null) {
         break missingId;
       }
 
@@ -87,14 +90,32 @@ public final class ItemTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.taskNameText;
-      TextView taskNameText = ViewBindings.findChildViewById(rootView, id);
-      if (taskNameText == null) {
+      id = R.id.tvAssignee;
+      TextView tvAssignee = ViewBindings.findChildViewById(rootView, id);
+      if (tvAssignee == null) {
         break missingId;
       }
 
-      return new ItemTaskBinding((MaterialCardView) rootView, assigneeText, priorityBadge,
-          taskCheckbox, taskNameText);
+      id = R.id.tvDueDate;
+      TextView tvDueDate = ViewBindings.findChildViewById(rootView, id);
+      if (tvDueDate == null) {
+        break missingId;
+      }
+
+      id = R.id.tvPriority;
+      TextView tvPriority = ViewBindings.findChildViewById(rootView, id);
+      if (tvPriority == null) {
+        break missingId;
+      }
+
+      id = R.id.tvTaskName;
+      TextView tvTaskName = ViewBindings.findChildViewById(rootView, id);
+      if (tvTaskName == null) {
+        break missingId;
+      }
+
+      return new ItemTaskBinding((MaterialCardView) rootView, btnTaskMenu, taskCheckbox, tvAssignee,
+          tvDueDate, tvPriority, tvTaskName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

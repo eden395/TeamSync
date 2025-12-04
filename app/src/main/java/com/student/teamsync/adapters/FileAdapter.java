@@ -26,7 +26,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
     private Context context;
     private List<FileModel> fileList;
 
-    public FileAdapter(Context context, List<FileModel> fileList) {
+    public FileAdapter(List<FileModel> fileList) {
         this.context = context;
         this.fileList = fileList;
     }
