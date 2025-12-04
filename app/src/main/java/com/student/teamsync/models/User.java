@@ -1,14 +1,22 @@
 package com.student.teamsync.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
 import java.io.Serializable;
 
+@Entity(tableName = "users")
 public class User implements Serializable {
-    private String userId;
+    @PrimaryKey
+    @NonNull
+    private String userId;  // Firebase UID, now explicitly non-null
+
     private String name;
     private String email;
-    private String role; // "member" or "advisor"
+    private String role;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String userId, String name, String email, String role) {
         this.userId = userId;

@@ -4,7 +4,7 @@
             "outputFile": "com.student.teamsync.app-mergeDebugResources-3:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\682f94ddfb24223dede1c757e9d1568b\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "source": "C:\\Users\\caffe\\.gradle\\caches\\8.11.1\\transforms\\1d4db095af07ddc8eb3aeeb1ecbfaa6b\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

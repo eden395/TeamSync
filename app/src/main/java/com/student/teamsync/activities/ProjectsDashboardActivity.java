@@ -20,7 +20,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.student.teamsync.R;
 import com.student.teamsync.adapters.ProjectAdapter;
+import com.student.teamsync.data.local.database.AppDatabase;
 import com.student.teamsync.models.Project;
+import com.student.teamsync.models.ProjectEntity;
+import com.student.teamsync.models.ProjectMember;
+import com.student.teamsync.utils.ProjectConverter;
 import com.student.teamsync.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -49,7 +53,7 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
 
         initializeViews();
         setupRecyclerView();
-        loadSampleProjects();
+        loadProjectsWithFallback();
         setupClickListeners();
 
         // Hide FAB for advisors
@@ -88,7 +92,29 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
 
         projectAdapter.notifyDataSetChanged();
     }
+    private void loadProjectsWithFallback() {
+        String currentUserId = sessionManager.getUserId();
+        if (currentUserId == null) {
+            loadSampleProjects();   // not logged in → show samples
+            return;
+        }
 
+        AppDatabase.getInstance(this).appDao()
+                .getMyProjects(currentUserId)
+                .observe(this, entities -> {
+                    if (entities != null && !entities.isEmpty()) {
+                        // We have real saved projects → show them
+                        projectList.clear();
+                        for (ProjectEntity e : entities) {
+                            projectList.add(ProjectConverter.toModel(e));
+                        }
+                        projectAdapter.notifyDataSetChanged();
+                    } else {
+                        // Database empty → fall back to your beautiful sample projects
+                        loadSampleProjects();
+                    }
+                });
+    }
     private void setupClickListeners() {
         fabAddProject.setOnClickListener(v -> showAddProjectDialog());
 
@@ -126,8 +152,6 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
                 .setView(dialogView)
                 .create();
 
-        dialogView.findViewById(R.id.btnCancelProject).setOnClickListener(v -> dialog.dismiss());
-
         dialogView.findViewById(R.id.btnCreateProject).setOnClickListener(v -> {
             String name = etProjectName.getText().toString().trim();
             String code = etCourseCode.getText().toString().trim();
@@ -139,9 +163,29 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
             }
 
             String projectId = UUID.randomUUID().toString();
+            String ownerId = sessionManager.getUserId();
+
             Project newProject = new Project(projectId, name, code, dueDate);
+
             projectList.add(newProject);
             projectAdapter.notifyItemInserted(projectList.size() - 1);
+
+            AppDatabase database = AppDatabase.getInstance(this);
+            var db = database.getOpenHelper().getWritableDatabase();
+            db.beginTransactionNonExclusive();
+            try {
+                ProjectEntity entity = ProjectConverter.toEntity(newProject, ownerId);
+                long localId = database.appDao().insertProject(entity);
+
+                ProjectMember member = new ProjectMember(localId, ownerId);
+                database.appDao().insertProjectMembers(List.of(member));
+
+                db.setTransactionSuccessful();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                db.endTransaction();
+            }
 
             Toast.makeText(this, "Project created successfully", Toast.LENGTH_SHORT).show();
             dialog.dismiss();

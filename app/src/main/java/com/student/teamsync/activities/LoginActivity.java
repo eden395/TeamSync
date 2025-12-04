@@ -13,6 +13,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.student.teamsync.R;
+import com.student.teamsync.data.local.database.AppDatabase;
+import com.student.teamsync.models.User;
 import com.student.teamsync.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
@@ -76,11 +78,22 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             sessionManager.createLoginSession(user.getEmail());
+                            String uid = user.getUid();
+                            sessionManager.saveUserId(uid);  // important for database
+
+                            User localUser = new User();
+                            localUser.setUserId(uid);
+                            localUser.setEmail(user.getEmail());
+                            localUser.setName(user.getDisplayName() != null ? user.getDisplayName() : "");
+                            localUser.setRole(sessionManager.getUserRole());
+
+                            new Thread(() -> AppDatabase.getInstance(this).appDao().insertUser(localUser)).start();
                             Toast.makeText(LoginActivity.this, 
                                 getString(R.string.login_success), 
                                 Toast.LENGTH_SHORT).show();
                             navigateToMain();
                         }
+
                     } else {
                         loginButton.setEnabled(true);
                         loginButton.setText(R.string.login);

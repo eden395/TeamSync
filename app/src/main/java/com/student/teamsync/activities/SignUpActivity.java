@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.student.teamsync.R;
+import com.student.teamsync.data.local.database.AppDatabase;
+import com.student.teamsync.models.User;
 import com.student.teamsync.utils.SessionManager;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -80,6 +82,17 @@ public class SignUpActivity extends AppCompatActivity {
 
                             user.updateProfile(profileUpdates).addOnCompleteListener(profileTask -> {
                                 sessionManager.createLoginSession(user.getEmail());
+
+                                String uid = user.getUid();
+                                sessionManager.saveUserId(uid);
+
+                                User localUser = new User();
+                                localUser.setUserId(uid);
+                                localUser.setEmail(user.getEmail());
+                                localUser.setName(name);  // we have the name from input
+                                localUser.setRole(sessionManager.getUserRole());
+
+                                new Thread(() -> AppDatabase.getInstance(this).appDao().insertUser(localUser)).start();
                                 Toast.makeText(SignUpActivity.this, 
                                     getString(R.string.signup_success), 
                                     Toast.LENGTH_SHORT).show();

@@ -4,7 +4,7 @@
             "outputFile": "com.student.teamsync.app-mergeDebugResources-3:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\682f94ddfb24223dede1c757e9d1568b\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\caffe\\.gradle\\caches\\8.11.1\\transforms\\1d4db095af07ddc8eb3aeeb1ecbfaa6b\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\3cf0f856761f0094cd38447904e52501\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\caffe\\.gradle\\caches\\8.11.1\\transforms\\098f3e41b70730f2f87e5e954e0aa273\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
