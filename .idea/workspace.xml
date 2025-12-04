@@ -80,6 +80,16 @@
           <theme>@style/Theme.TeamSync</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_task.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_team_member.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -87,7 +97,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7b2a6f8-f8eb-4030-aeb5-1ca58d8fd380" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/processDebugResources/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/processDebugResources/R.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/teamsync/adapters/FileAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/teamsync/adapters/FileAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/teamsync/fragments/FilesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/teamsync/fragments/FilesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/teamsync/fragments/TasksFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/teamsync/fragments/TasksFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_file.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_file.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +116,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lincu\.android\avd\Pixel_8_Pro.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=OJFAJRXCPFYPSGRO)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -107,8 +126,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
-        <option value="resourceFile" />
         <option value="Class" />
+        <option value="valueResourceFile" />
+        <option value="resourceFile" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -144,6 +165,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.student.teamsync.fragments" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lincu\AndroidStudioProjects\TeamSync\app" />
     </key>
@@ -238,12 +262,12 @@
       <map>
         <entry key="com.student.teamsync">
           <value>
-            <CheckInfo lastCheckTimestamp="1764665018870" />
+            <CheckInfo lastCheckTimestamp="1764862712613" />
           </value>
         </entry>
         <entry key="com.student.teamsync.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1764665018558" />
+            <CheckInfo lastCheckTimestamp="1764862712615" />
           </value>
         </entry>
       </map>

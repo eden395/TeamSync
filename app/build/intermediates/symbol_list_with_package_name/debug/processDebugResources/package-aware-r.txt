@@ -3074,12 +3074,16 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_other_sign_in
+drawable ic_passkey
+drawable ic_password
 drawable ic_search_black_24
 drawable ic_send
 drawable ic_tasks
 drawable ic_team
 drawable ic_team_placeholder
 drawable ic_upload
+drawable img_file_icon
 drawable input_background
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -4014,6 +4018,8 @@ string advisor_description
 string advisor_mentor
 string ahead
 string and
+string android_credentials_TYPE_PASSWORD_CREDENTIAL
+string androidx_credentials_TYPE_PUBLIC_KEY_CREDENTIAL
 string androidx_startup
 string announcement
 string app_name
@@ -4058,6 +4064,7 @@ string delete
 string delete_project_message
 string delete_project_title
 string dont_have_account
+string download_file
 string due
 string due_date
 string email
@@ -4078,6 +4085,7 @@ string fab_transformation_sheet_behavior
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
+string file_name
 string files
 string forgot_password
 string full_name
@@ -4809,6 +4817,7 @@ style Theme_Design_Light
 style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
+style Theme_Hidden
 style Theme_Material3_Dark
 style Theme_Material3_Dark_BottomSheetDialog
 style Theme_Material3_Dark_Dialog
@@ -4883,6 +4892,7 @@ style Theme_MaterialComponents_Light_NoActionBar
 style Theme_MaterialComponents_Light_NoActionBar_Bridge
 style Theme_MaterialComponents_NoActionBar
 style Theme_MaterialComponents_NoActionBar_Bridge
+style Theme_PlayCore_Transparent
 style Theme_TeamSync
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar

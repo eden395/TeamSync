@@ -121,4 +121,6 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="project_deleted">Project deleted</string>
+    <string name="download_file">download_file</string>
+    <string name="file_name">file_name</string>
 </resources>

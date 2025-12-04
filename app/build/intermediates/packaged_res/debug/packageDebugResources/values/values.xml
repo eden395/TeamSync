@@ -41,6 +41,7 @@
     <string name="delete_project_message">Are you sure you want to delete %s?</string>
     <string name="delete_project_title">Delete Project</string>
     <string name="dont_have_account">Don\'t have an Account?</string>
+    <string name="download_file">download_file</string>
     <string name="due">Due:</string>
     <string name="due_date">Due date:</string>
     <string name="email">Email:</string>
@@ -53,6 +54,7 @@
     <string name="error_password_length">Password must be at least 6 characters</string>
     <string name="error_password_mismatch">Passwords do not match</string>
     <string name="error_signup_failed">Sign up failed. Please try again.</string>
+    <string name="file_name">file_name</string>
     <string name="files">Files</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="full_name">Full name:</string>

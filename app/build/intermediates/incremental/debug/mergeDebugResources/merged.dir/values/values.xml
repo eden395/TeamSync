@@ -2006,6 +2006,8 @@
     <string name="advisor_mentor">Advisor/Mentor</string>
     <string name="ahead">Ahead</string>
     <string name="and">and</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Password</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Passkey</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="announcement">Announcement</string>
     <string name="app_name">TeamSync</string>
@@ -2050,6 +2052,7 @@
     <string name="delete_project_message">Are you sure you want to delete %s?</string>
     <string name="delete_project_title">Delete Project</string>
     <string name="dont_have_account">Don\'t have an Account?</string>
+    <string name="download_file">download_file</string>
     <string name="due">Due:</string>
     <string name="due_date">Due date:</string>
     <string name="email">Email:</string>
@@ -2072,6 +2075,7 @@
     <string name="fallback_menu_item_copy_link">Copy link</string>
     <string name="fallback_menu_item_open_in_browser">Open in browser</string>
     <string name="fallback_menu_item_share_link">Share link</string>
+    <string name="file_name">file_name</string>
     <string name="files">Files</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="full_name">Full name:</string>
@@ -6535,6 +6539,10 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
+    <style name="Theme.Hidden" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
     <style name="Theme.Material3.Dark" parent="Base.Theme.Material3.Dark"/>
     <style name="Theme.Material3.Dark.BottomSheetDialog" parent="Base.Theme.Material3.Dark.BottomSheetDialog"/>
     <style name="Theme.Material3.Dark.Dialog" parent="Base.Theme.Material3.Dark.Dialog"/>
@@ -6671,6 +6679,14 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
+    <style name="Theme.PlayCore.Transparent" parent="android:Theme">
+<item name="android:windowIsTranslucent">true</item>
+<item name="android:windowBackground">@android:color/transparent</item>
+<item name="android:windowContentOverlay">@null</item>
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowIsFloating">true</item>
+<item name="android:backgroundDimEnabled">false</item>
+</style>
     <style name="Theme.TeamSync" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>

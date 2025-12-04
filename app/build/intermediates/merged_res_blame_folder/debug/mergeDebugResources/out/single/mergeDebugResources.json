@@ -88,6 +88,10 @@
         "source": "com.student.teamsync.app-main-7:/drawable/ic_chats.xml"
     },
     {
+        "merged": "com.student.teamsync.app-debug-5:/drawable_img_file_icon.xml.flat",
+        "source": "com.student.teamsync.app-main-7:/drawable/img_file_icon.xml"
+    },
+    {
         "merged": "com.student.teamsync.app-debug-5:/drawable_ic_team_placeholder.xml.flat",
         "source": "com.student.teamsync.app-main-7:/drawable/ic_team_placeholder.xml"
     },

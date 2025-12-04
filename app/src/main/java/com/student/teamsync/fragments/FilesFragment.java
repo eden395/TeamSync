@@ -1,9 +1,12 @@
 package com.student.teamsync.fragments;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,37 +21,49 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.student.teamsync.R;
 import com.student.teamsync.adapters.FileAdapter;
-import com.student.teamsync.models.ProjectFile;
+import com.student.teamsync.models.FileModel;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
-public class FilesFragment extends Fragment implements FileAdapter.OnFileClickListener {
+public class FilesFragment extends Fragment {
 
     private RecyclerView filesRecyclerView;
     private MaterialButton uploadButton;
     private FileAdapter fileAdapter;
-    private List<ProjectFile> fileList;
+    private List<FileModel> fileList = new ArrayList<>();
     private ActivityResultLauncher<Intent> filePickerLauncher;
 
+    // Firebase
+    private FirebaseFirestore db;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Register file picker
+        // Initialize Firebase
+        db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+
+        // Register file picker launcher
         filePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                         Uri fileUri = result.getData().getData();
                         if (fileUri != null) {
-                            handleFileUpload(fileUri);
+                            uploadFileToFirebase(fileUri);
                         }
                     }
                 }
@@ -62,7 +77,7 @@ public class FilesFragment extends Fragment implements FileAdapter.OnFileClickLi
 
         initializeViews(view);
         setupRecyclerView();
-        loadSampleFiles();
+        loadFilesFromFirestore();
 
         return view;
     }
@@ -75,85 +90,117 @@ public class FilesFragment extends Fragment implements FileAdapter.OnFileClickLi
     }
 
     private void setupRecyclerView() {
-        fileList = new ArrayList<>();
-        fileAdapter = new FileAdapter(fileList, this);
+        fileAdapter = new FileAdapter(getContext(), fileList);
         filesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         filesRecyclerView.setAdapter(fileAdapter);
     }
 
-    private void loadSampleFiles() {
-        // Sample files
-        fileList.add(new ProjectFile(
-                "1",
-                "Project_Proposal_Final.pdf",
-                "url",
-                "Christine",
-                "10/5/2025",
-                "project1"
-        ));
-        fileList.add(new ProjectFile(
-                "2",
-                "Requirements_Document.docx",
-                "url",
-                "Eden",
-                "10/6/2025",
-                "project1"
-        ));
-        fileAdapter.notifyDataSetChanged();
-    }
-
+    // Open file picker
     private void openFilePicker() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
+        String[] mimeTypes = {
+                "application/pdf",
+                "application/msword",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "application/vnd.ms-excel",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "application/vnd.ms-powerpoint",
+                "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "image/*"
+        };
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         filePickerLauncher.launch(Intent.createChooser(intent, "Select File"));
     }
 
-    private void handleFileUpload(Uri fileUri) {
-        // Get file name
+    // Upload file to Firebase Storage
+    private void uploadFileToFirebase(Uri fileUri) {
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Uploading...");
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         String fileName = getFileName(fileUri);
-
-        // In real app, upload to Firebase Storage here
         String fileId = UUID.randomUUID().toString();
-        String currentDate = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
 
-        ProjectFile newFile = new ProjectFile(
-                fileId,
-                fileName,
-                fileUri.toString(),
-                "Current User", // Replace with actual user name
-                currentDate,
-                "project1" // Replace with actual project ID
-        );
+        // Create reference to Firebase Storage
+        StorageReference fileRef = storageRef.child("project_files/" + fileId + "_" + fileName);
 
-        fileList.add(0, newFile);
-        fileAdapter.notifyItemInserted(0);
-        filesRecyclerView.scrollToPosition(0);
+        // Upload file
+        fileRef.putFile(fileUri)
+                .addOnProgressListener(taskSnapshot -> {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                })
+                .addOnSuccessListener(taskSnapshot -> {
+                    // Get download URL
+                    fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String downloadUrl = uri.toString();
 
-        Toast.makeText(getContext(), "File uploaded: " + fileName, Toast.LENGTH_SHORT).show();
+                        // Save file info to Firestore
+                        saveFileToFirestore(fileName, downloadUrl);
+
+                        progressDialog.dismiss();
+                        Toast.makeText(getContext(), "File uploaded successfully", Toast.LENGTH_SHORT).show();
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
+    // Save file metadata to Firestore
+    private void saveFileToFirestore(String name, String url) {
+        FileModel file = new FileModel(name, url, System.currentTimeMillis());
+
+        db.collection("files")
+                .add(file)
+                .addOnSuccessListener(documentReference -> {
+                    loadFilesFromFirestore();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Failed to save file info", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    // Load files from Firestore
+    private void loadFilesFromFirestore() {
+        db.collection("files")
+                .orderBy("uploadedAt", Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    fileList.clear();
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        FileModel file = doc.toObject(FileModel.class);
+                        fileList.add(file);
+                    }
+                    fileAdapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Failed to load files", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    // Get file name from URI
     private String getFileName(Uri uri) {
-        String fileName = "Unknown";
+        String result = null;
         if (uri.getScheme().equals("content")) {
-            android.database.Cursor cursor = getContext().getContentResolver().query(uri, null, null, null, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                int nameIndex = cursor.getColumnIndex(android.provider.OpenableColumns.DISPLAY_NAME);
-                if (nameIndex >= 0) {
-                    fileName = cursor.getString(nameIndex);
+            try (Cursor cursor = getActivity().getContentResolver()
+                    .query(uri, null, null, null, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (index != -1) {
+                        result = cursor.getString(index);
+                    }
                 }
-                cursor.close();
             }
         }
-        if (fileName.equals("Unknown")) {
-            fileName = uri.getLastPathSegment();
+        if (result == null) {
+            result = uri.getLastPathSegment();
         }
-        return fileName;
-    }
-
-    @Override
-    public void onDownloadClick(ProjectFile file) {
-        Toast.makeText(getContext(), "Downloading: " + file.getFileName(), Toast.LENGTH_SHORT).show();
-        // In real app, implement download functionality
+        return result;
     }
 }

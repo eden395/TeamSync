@@ -45,6 +45,7 @@ drawable ic_tasks
 drawable ic_team
 drawable ic_team_placeholder
 drawable ic_upload
+drawable img_file_icon
 drawable input_background
 drawable rounded_background
 id addTaskButton
@@ -188,6 +189,7 @@ string delete
 string delete_project_message
 string delete_project_title
 string dont_have_account
+string download_file
 string due
 string due_date
 string email
@@ -200,6 +202,7 @@ string error_login_failed
 string error_password_length
 string error_password_mismatch
 string error_signup_failed
+string file_name
 string files
 string forgot_password
 string full_name
