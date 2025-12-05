@@ -84,7 +84,7 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
         rvProjects = findViewById(R.id.rvProjects);
         fabAddProject = findViewById(R.id.fabAddProject);
         btnProjects = findViewById(R.id.btnProjects);
-        btnReminders = findViewById(R.id.btnReminders);
+//        btnReminders = findViewById(R.id.btnReminders);
         btnLogout = findViewById(R.id.btnLogout);
         btnProfile = findViewById(R.id.btnProfile);
 
@@ -158,9 +158,9 @@ public class ProjectsDashboardActivity extends AppCompatActivity implements Proj
 
         btnLogout.setOnClickListener(v -> logout());
 
-        btnReminders.setOnClickListener(v -> {
-            Toast.makeText(this, R.string.reminders_coming_soon, Toast.LENGTH_SHORT).show();
-        });
+//        btnReminders.setOnClickListener(v -> {
+//            Toast.makeText(this, R.string.reminders_coming_soon, Toast.LENGTH_SHORT).show();
+//        });
     }
 
     private void showAddProjectDialog() {

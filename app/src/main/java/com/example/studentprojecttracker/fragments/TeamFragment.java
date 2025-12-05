@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.example.studentprojecttracker.models.TeamMember;
 import com.example.studentprojecttracker.models.User;
 import com.example.studentprojecttracker.utils.FirestoreHelper;
 import com.example.studentprojecttracker.utils.ProfilePictureManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,7 @@ public class TeamFragment extends Fragment {
     private Project currentProject;
     private View progressBar;
     private View emptyView;
+    private boolean isUserLeader = false;
 
     @Nullable
     @Override
@@ -56,15 +59,32 @@ public class TeamFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
         emptyView = view.findViewById(R.id.emptyView);
 
-        // Setup RecyclerView
-        rvTeamMembers.setLayoutManager(new LinearLayoutManager(requireContext()));
-        teamMemberAdapter = new TeamMemberAdapter(new ArrayList<>());
-        rvTeamMembers.setAdapter(teamMemberAdapter);
-
-        // Get project from parent activity
+        // Get project from parent activity FIRST
         if (getActivity() != null && getActivity().getIntent() != null) {
             currentProject = (Project) getActivity().getIntent().getSerializableExtra("project");
         }
+
+        // Check if current user is the leader AFTER getting the project
+        checkIfUserIsLeader();
+
+        // Setup RecyclerView
+        rvTeamMembers.setLayoutManager(new LinearLayoutManager(requireContext()));
+        teamMemberAdapter = new TeamMemberAdapter(
+                new ArrayList<>(),
+                isUserLeader,
+                new TeamMemberAdapter.OnMemberInteractionListener() {
+                    @Override
+                    public void onMemberEdit(TeamMember member, int position) {
+                        showEditMemberDialog(member, position);
+                    }
+
+                    @Override
+                    public void onMemberDelete(TeamMember member, int position) {
+                        showDeleteMemberConfirmation(member, position);
+                    }
+                }
+        );
+        rvTeamMembers.setAdapter(teamMemberAdapter);
 
         // Load team members
         if (currentProject != null) {
@@ -80,6 +100,301 @@ public class TeamFragment extends Fragment {
         if (currentProject != null) {
             loadTeamMembers();
         }
+    }
+
+    /**
+     * Check if the current user is the project leader
+     */
+    /**
+     * Check if the current user is the project leader
+     */
+    private void checkIfUserIsLeader() {
+        if (currentProject != null && FirebaseAuth.getInstance().getCurrentUser() != null) {
+            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String currentUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+            // Check using both userId and email since the project might store either
+            isUserLeader = currentProject.isLeader(currentUserId) ||
+                    currentProject.isLeader(currentUserEmail);
+        }
+    }
+
+    /**
+     * Show edit member dialog
+     */
+    /**
+     * Show edit member dialog
+     */
+    private void showEditMemberDialog(TeamMember member, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Edit " + member.getName());
+
+        // Create options array
+        String[] options;
+        boolean isMemberLeader = currentProject.isLeader(member.getEmail()) ||
+                currentProject.isLeader(member.getUserId());
+
+        if (isMemberLeader) {
+            options = new String[]{
+//                    "View Member Details",
+                    "Remove as Leader",
+                    "Reassign Tasks"
+            };
+        } else {
+            options = new String[]{
+//                    "View Member Details",
+                    "Promote to Leader",
+                    "Reassign Tasks"
+            };
+        }
+
+        builder.setItems(options, (dialog, which) -> {
+            switch (which) {
+//                case 0: // View Member Details
+//                    showMemberDetailsDialog(member);
+//                    break;
+                case 1: // Promote to Leader / Remove as Leader
+                    if (isMemberLeader) {
+                        removeAsLeader(member);
+                    } else {
+                        promoteToLeader(member);
+                    }
+                    break;
+                case 2: // Reassign Tasks
+                    showReassignTasksDialog(member);
+                    break;
+            }
+        });
+
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+
+    /**
+     * Show member details in a dialog
+     */
+    private void showMemberDetailsDialog(TeamMember member) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle(member.getName());
+
+        String details = "Email: " + (member.getEmail() != null ? member.getEmail() : "N/A") + "\n\n" +
+                "Status: " + member.getStatus() + "\n" +
+                "Tasks Assigned: " + member.getTasksAssigned() + "\n" +
+                "Completion: " + member.getCompletionPercentage() + "%\n\n";
+
+        boolean isLeader = currentProject.isLeader(member.getEmail()) ||
+                currentProject.isLeader(member.getUserId());
+        if (isLeader) {
+            details += "Role: Project Leader";
+        } else {
+            details += "Role: Team Member";
+        }
+
+        builder.setMessage(details);
+        builder.setPositiveButton("OK", null);
+        builder.show();
+    }
+
+    /**
+     * Promote member to leader
+     */
+    private void promoteToLeader(TeamMember member) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Promote to Leader")
+                .setMessage("Promote " + member.getName() + " to project leader?")
+                .setPositiveButton("Promote", (dialog, which) -> {
+                    showLoading();
+
+                    String memberIdentifier = member.getEmail() != null ? member.getEmail() : member.getUserId();
+                    List<String> updatedLeaderIds = new ArrayList<>(currentProject.getLeaderIds());
+
+                    if (!updatedLeaderIds.contains(memberIdentifier)) {
+                        updatedLeaderIds.add(memberIdentifier);
+                    }
+
+                    // Update in Firestore
+                    firestoreHelper.updateProjectLeaders(
+                            currentProject.getProjectId(),
+                            updatedLeaderIds,
+                            new FirestoreHelper.OperationCallback() {
+                                @Override
+                                public void onSuccess() {
+                                    if (getActivity() != null) {
+                                        getActivity().runOnUiThread(() -> {
+                                            hideLoading();
+                                            Toast.makeText(getContext(),
+                                                    member.getName() + " promoted to leader",
+                                                    Toast.LENGTH_SHORT).show();
+
+                                            // Update local project reference
+                                            currentProject.setLeaderIds(updatedLeaderIds);
+
+                                            // Reload team members
+                                            loadTeamMembers();
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onError(String error) {
+                                    if (getActivity() != null) {
+                                        getActivity().runOnUiThread(() -> {
+                                            hideLoading();
+                                            Toast.makeText(getContext(),
+                                                    "Error promoting member: " + error,
+                                                    Toast.LENGTH_SHORT).show();
+                                        });
+                                    }
+                                }
+                            }
+                    );
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    /**
+     * Remove member as leader
+     */
+    private void removeAsLeader(TeamMember member) {
+        // Don't allow removing the creator as leader
+        String memberIdentifier = member.getEmail() != null ? member.getEmail() : member.getUserId();
+        if (currentProject.getCreatorId() != null &&
+                (currentProject.getCreatorId().equals(memberIdentifier) ||
+                        currentProject.getCreatorId().equals(member.getUserId()))) {
+            Toast.makeText(getContext(), "Cannot remove project creator as leader", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Remove as Leader")
+                .setMessage("Remove " + member.getName() + " from project leaders?")
+                .setPositiveButton("Remove", (dialog, which) -> {
+                    showLoading();
+
+                    List<String> updatedLeaderIds = new ArrayList<>(currentProject.getLeaderIds());
+                    updatedLeaderIds.remove(memberIdentifier);
+                    updatedLeaderIds.remove(member.getUserId());
+
+                    // Update in Firestore
+                    firestoreHelper.updateProjectLeaders(
+                            currentProject.getProjectId(),
+                            updatedLeaderIds,
+                            new FirestoreHelper.OperationCallback() {
+                                @Override
+                                public void onSuccess() {
+                                    if (getActivity() != null) {
+                                        getActivity().runOnUiThread(() -> {
+                                            hideLoading();
+                                            Toast.makeText(getContext(),
+                                                    member.getName() + " removed as leader",
+                                                    Toast.LENGTH_SHORT).show();
+
+                                            // Update local project reference
+                                            currentProject.setLeaderIds(updatedLeaderIds);
+
+                                            // Reload team members
+                                            loadTeamMembers();
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onError(String error) {
+                                    if (getActivity() != null) {
+                                        getActivity().runOnUiThread(() -> {
+                                            hideLoading();
+                                            Toast.makeText(getContext(),
+                                                    "Error removing leader: " + error,
+                                                    Toast.LENGTH_SHORT).show();
+                                        });
+                                    }
+                                }
+                            }
+                    );
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    /**
+     * Show dialog to reassign member's tasks
+     */
+    private void showReassignTasksDialog(TeamMember member) {
+        Toast.makeText(getContext(), "Reassign tasks feature coming soon", Toast.LENGTH_SHORT).show();
+
+        // TODO: Implement task reassignment
+        // 1. Get all tasks assigned to this member
+        // 2. Show a dialog with list of tasks
+        // 3. Allow selecting new assignee for each task
+        // 4. Update tasks in Firestore
+    }
+
+    /**
+     * Show delete member confirmation dialog
+     */
+    private void showDeleteMemberConfirmation(TeamMember member, int position) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Remove Team Member")
+                .setMessage("Are you sure you want to remove " + member.getName() + " from the team?")
+                .setPositiveButton("Remove", (dialog, which) -> {
+                    deleteMemberFromTeam(member, position);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    /**
+     * Delete member from team
+     */
+    private void deleteMemberFromTeam(TeamMember member, int position) {
+        if (currentProject == null) return;
+
+        showLoading();
+
+        // Get the member identifier (email or userId)
+        String memberIdentifier = member.getEmail() != null ? member.getEmail() : member.getUserId();
+
+        // Remove member from project's memberIds list
+        List<String> updatedMemberIds = new ArrayList<>(currentProject.getMemberIds());
+        updatedMemberIds.remove(memberIdentifier);
+
+        // Update project in Firestore
+        firestoreHelper.updateProjectMembers(
+                currentProject.getProjectId(),
+                updatedMemberIds,
+                new FirestoreHelper.OperationCallback() {
+                    @Override
+                    public void onSuccess() {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                hideLoading();
+                                Toast.makeText(getContext(),
+                                        member.getName() + " removed from team",
+                                        Toast.LENGTH_SHORT).show();
+
+                                // Update local project reference
+                                currentProject.setMemberIds(updatedMemberIds);
+
+                                // Reload team members
+                                loadTeamMembers();
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                hideLoading();
+                                Toast.makeText(getContext(),
+                                        "Error removing member: " + error,
+                                        Toast.LENGTH_SHORT).show();
+                            });
+                        }
+                    }
+                }
+        );
     }
 
     /**
@@ -109,9 +424,6 @@ public class TeamFragment extends Fragment {
         }
     }
 
-    /**
-     * Load individual member with profile and stats
-     */
     /**
      * Load individual member with profile and stats
      */
@@ -343,6 +655,7 @@ public class TeamFragment extends Fragment {
      */
     public void setProject(Project project) {
         this.currentProject = project;
+        checkIfUserIsLeader();
         loadTeamMembers();
     }
 }

@@ -1378,6 +1378,8 @@ color browser_actions_title_color
 color button_material_dark
 color button_material_light
 color card_background
+color card_background2
+color card_background_task
 color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
@@ -2130,6 +2132,7 @@ color text_secondary
 color tooltip_background_dark
 color tooltip_background_light
 color white
+color yellow_light
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -3016,6 +3019,8 @@ drawable badge_low
 drawable badge_medium
 drawable badge_on_track
 drawable baseline_android_24
+drawable bg_chat_receiver
+drawable bg_chat_sender
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3052,6 +3057,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_add
 drawable ic_advisor
 drawable ic_arrow_back
 drawable ic_arrow_back_black_24
@@ -3155,6 +3161,7 @@ drawable mtrl_switch_track
 drawable mtrl_switch_track_decoration
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable note_background_gradient
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -3231,7 +3238,9 @@ id action_bar_subtitle
 id action_bar_title
 id action_container
 id action_context_bar
+id action_delete
 id action_divider
+id action_edit
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -3242,6 +3251,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addNoteButton
 id addTaskButton
 id adjust_height
 id adjust_width
@@ -3290,10 +3300,10 @@ id btnCreateProject
 id btnDownload
 id btnEditProfile
 id btnLogout
+id btnMemberMenu
 id btnMenu
 id btnProfile
 id btnProjects
-id btnReminders
 id btnSave
 id btnSaveProfile
 id btnTaskMenu
@@ -3303,6 +3313,7 @@ id callMeasure
 id cancel_button
 id cardAdvisor
 id cardMember
+id cardView
 id carryVelocity
 id center
 id centerCrop
@@ -3377,6 +3388,7 @@ id easeInOut
 id easeOut
 id east
 id edge
+id editNoteInput
 id edit_query
 id elastic
 id emailEditText
@@ -3503,6 +3515,7 @@ id material_value_index
 id matrix
 id memberNameText
 id message
+id messageContainer
 id messageInput
 id middle
 id mini
@@ -3558,6 +3571,9 @@ id noState
 id none
 id normal
 id north
+id noteInput
+id noteOptions
+id notesRecyclerView
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3621,6 +3637,7 @@ id row_index_key
 id rvMemberProgress
 id rvProjects
 id rvTeamMembers
+id saveButton
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3710,10 +3727,19 @@ id tasksRecyclerView
 id termsText
 id text
 id text2
+id textAuthor
 id textEnd
+id textMessage
+id textNote
+id textReceiverMessage
+id textReceiverName
+id textReceiverTime
+id textSenderMessage
+id textSenderTime
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textTime
 id textTop
 id text_input_end_icon
 id text_input_error_icon
@@ -3934,13 +3960,19 @@ layout design_text_input_start_icon
 layout dialog_add_member
 layout dialog_add_project
 layout dialog_change_password
+layout dialog_edit_note
 layout fragment_chats
 layout fragment_files
+layout fragment_notes
 layout fragment_profile
 layout fragment_tasks
 layout fragment_team
+layout item_chat_message
+layout item_chat_receiver
+layout item_chat_sender
 layout item_file
 layout item_member_progress
+layout item_note
 layout item_project
 layout item_task
 layout item_team_member
@@ -4006,6 +4038,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu bottom_navigation_menu
+menu note_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
@@ -4242,8 +4275,8 @@ string mtrl_switch_track_decoration_path
 string mtrl_switch_track_path
 string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
-string nav_chats
 string nav_files
+string nav_notes
 string nav_tasks
 string nav_team
 string on_track

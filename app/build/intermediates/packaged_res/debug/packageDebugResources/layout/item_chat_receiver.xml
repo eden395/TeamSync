@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="start"
+    android:padding="6dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/bg_chat_receiver"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textReceiverName"
+            android:textSize="12sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textReceiverMessage"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/textReceiverTime"
+            android:textSize="10sp"
+            android:textColor="@color/text_secondary"
+            android:alpha="0.7" />
+
+    </LinearLayout>
+</LinearLayout>

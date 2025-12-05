@@ -24,6 +24,9 @@ public final class ItemTeamMemberBinding implements ViewBinding {
   public final ImageView avatarImage;
 
   @NonNull
+  public final ImageView btnMemberMenu;
+
+  @NonNull
   public final TextView completionText;
 
   @NonNull
@@ -36,10 +39,12 @@ public final class ItemTeamMemberBinding implements ViewBinding {
   public final TextView tasksAssignedText;
 
   private ItemTeamMemberBinding(@NonNull MaterialCardView rootView, @NonNull ImageView avatarImage,
-      @NonNull TextView completionText, @NonNull TextView memberNameText,
-      @NonNull TextView statusBadge, @NonNull TextView tasksAssignedText) {
+      @NonNull ImageView btnMemberMenu, @NonNull TextView completionText,
+      @NonNull TextView memberNameText, @NonNull TextView statusBadge,
+      @NonNull TextView tasksAssignedText) {
     this.rootView = rootView;
     this.avatarImage = avatarImage;
+    this.btnMemberMenu = btnMemberMenu;
     this.completionText = completionText;
     this.memberNameText = memberNameText;
     this.statusBadge = statusBadge;
@@ -79,6 +84,12 @@ public final class ItemTeamMemberBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnMemberMenu;
+      ImageView btnMemberMenu = ViewBindings.findChildViewById(rootView, id);
+      if (btnMemberMenu == null) {
+        break missingId;
+      }
+
       id = R.id.completionText;
       TextView completionText = ViewBindings.findChildViewById(rootView, id);
       if (completionText == null) {
@@ -103,8 +114,8 @@ public final class ItemTeamMemberBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemTeamMemberBinding((MaterialCardView) rootView, avatarImage, completionText,
-          memberNameText, statusBadge, tasksAssignedText);
+      return new ItemTeamMemberBinding((MaterialCardView) rootView, avatarImage, btnMemberMenu,
+          completionText, memberNameText, statusBadge, tasksAssignedText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

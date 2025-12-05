@@ -1,90 +1,118 @@
 [
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_profile.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_profile.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_chat_sender.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_chat_sender.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/item_task.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_task.xml"
-    },
-    {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_role_selection.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_role_selection.xml"
-    },
-    {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/dialog_change_password.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/dialog_change_password.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\fragment_team.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_team.xml"
     },
     {
         "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/item_team_member.xml",
         "source": "com.example.studentprojecttracker.app-main-7:/layout/item_team_member.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_login.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_login.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_task.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_task.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/dialog_add_project.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/dialog_add_project.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_projects_dashboard.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_projects_dashboard.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_advisor_projects_view.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_advisor_projects_view.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_login.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_add_task.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_add_task.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\fragment_profile.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/fragment_tasks.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_tasks.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_chat_message.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_chat_message.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_edit_profile.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_edit_profile.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_role_selection.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_role_selection.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/fragment_profile.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_profile.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\fragment_tasks.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_tasks.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_projects_dashboard.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_projects_dashboard.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_team_member.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_team_member.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/fragment_team.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_team.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_edit_profile.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_edit_profile.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_main.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_main.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_member_progress.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_member_progress.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/fragment_files.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_files.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\dialog_change_password.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_change_password.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/item_file.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_file.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\dialog_add_member.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_add_member.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/dialog_add_member.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/dialog_add_member.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\fragment_files.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_files.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/fragment_chats.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_chats.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\dialog_edit_note.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_edit_note.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/item_member_progress.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_member_progress.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_file.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_file.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/activity_signup.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_signup.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\fragment_notes.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_notes.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-mergeDebugResources-4:/layout/item_project.xml",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_project.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_add_task.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_add_task.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_project.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_project.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\dialog_add_project.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_add_project.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_advisor_projects_view.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_advisor_projects_view.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_main.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_chat_receiver.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_chat_receiver.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\fragment_chats.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_chats.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_profile.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\item_note.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_note.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-mergeDebugResources-4:\\layout\\activity_signup.xml",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_signup.xml"
     }
 ]

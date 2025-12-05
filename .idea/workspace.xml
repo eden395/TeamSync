@@ -65,12 +65,22 @@
           <theme>@style/Theme.TeamSync</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_edit_note.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chats.xml">
         <config>
           <theme>@style/Theme.TeamSync</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_files.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml">
         <config>
           <theme>@style/Theme.TeamSync</theme>
         </config>
@@ -90,12 +100,32 @@
           <theme>@style/Theme.TeamSync</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_chat_message.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_chat_receiver.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_chat_sender.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_file.xml">
         <config>
           <theme>@style/Theme.TeamSync</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_member_progress.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_note.xml">
         <config>
           <theme>@style/Theme.TeamSync</theme>
         </config>
@@ -116,6 +146,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_navigation_menu.xml">
+        <config>
+          <theme>@style/Theme.TeamSync</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/note_menu.xml">
         <config>
           <theme>@style/Theme.TeamSync</theme>
         </config>
@@ -1097,9 +1132,9 @@
       <list>
         <option value="AnnotationType" />
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>

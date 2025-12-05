@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.studentprojecttracker.fragments.NotesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.studentprojecttracker.R;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             if (itemId == R.id.nav_tasks) {
                 selectedFragment = new TasksFragment();
             } else if (itemId == R.id.nav_chats) {
-                selectedFragment = new ChatsFragment();
+                selectedFragment = new NotesFragment();
             } else if (itemId == R.id.nav_files) {
                 selectedFragment = new FilesFragment();
             } else if (itemId == R.id.nav_team) {

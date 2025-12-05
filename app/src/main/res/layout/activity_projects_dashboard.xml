@@ -68,17 +68,6 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/primary"
             app:cornerRadius="20dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnReminders"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:text="@string/reminders_title"
-            android:textColor="@color/text_primary"
-            android:backgroundTint="@color/gray_light"
-            app:cornerRadius="20dp" />
     </LinearLayout>
 
     <!-- Projects List -->

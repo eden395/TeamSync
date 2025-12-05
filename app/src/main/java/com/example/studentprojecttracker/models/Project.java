@@ -35,9 +35,6 @@ public class Project implements Serializable {
         this.progressPercentage = 0;
     }
 
-    public Project(String number, String s, String s2, String s1) {
-    }
-
     // Check if user is a leader
     public boolean isLeader(String userId) {
         return leaderIds != null && leaderIds.contains(userId);

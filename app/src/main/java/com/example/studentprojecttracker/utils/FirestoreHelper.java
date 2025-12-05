@@ -2,6 +2,9 @@ package com.example.studentprojecttracker.utils;
 
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
+import com.example.studentprojecttracker.models.Note;
 import com.example.studentprojecttracker.models.User;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -97,6 +100,49 @@ public class FirestoreHelper {
                     Log.e(TAG, "Error updating project", e);
                     if (listener != null) {
                         listener.onComplete(false, e.getMessage());
+                    }
+                });
+    }
+
+    // Add this method in the PROJECT OPERATIONS section of FirestoreHelper.java
+
+    public interface OperationCallback {
+        void onSuccess();
+        void onError(String error);
+    }
+
+    public void updateProjectMembers(String projectId, List<String> memberIds, OperationCallback callback) {
+        db.collection(COLLECTION_PROJECTS)
+                .document(projectId)
+                .update("memberIds", memberIds)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Project members updated successfully");
+                    if (callback != null) {
+                        callback.onSuccess();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error updating project members", e);
+                    if (callback != null) {
+                        callback.onError(e.getMessage());
+                    }
+                });
+    }
+
+    public void updateProjectLeaders(String projectId, List<String> leaderIds, OperationCallback callback) {
+        db.collection(COLLECTION_PROJECTS)
+                .document(projectId)
+                .update("leaderIds", leaderIds)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Project leaders updated successfully");
+                    if (callback != null) {
+                        callback.onSuccess();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error updating project leaders", e);
+                    if (callback != null) {
+                        callback.onError(e.getMessage());
                     }
                 });
     }
@@ -476,6 +522,73 @@ public class FirestoreHelper {
                     }
                 });
     }
+
+    // ==================== NOTE OPERATIONS ====================
+    public interface NoteCallback {
+        void onSuccess(List<Note> notes);
+        void onError(String error);
+    }
+
+    public void addProjectNote(String projectId, Note note, @Nullable OnCompleteListener listener) {
+        db.collection(COLLECTION_PROJECTS)
+                .document(projectId)
+                .collection("notes")
+                .document(note.getNoteId())
+                .set(note)
+                .addOnSuccessListener(aVoid -> {
+                    if (listener != null) listener.onComplete(true, "Note saved successfully");
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error saving note", e);
+                    if (listener != null) listener.onComplete(false, e.getMessage());
+                });
+    }
+
+    /**
+     * Delete a note
+     */
+    public void deleteProjectNote(String projectId, String noteId, @Nullable OnCompleteListener listener) {
+        db.collection(COLLECTION_PROJECTS)
+                .document(projectId)
+                .collection("notes")
+                .document(noteId)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    if (listener != null) listener.onComplete(true, "Note deleted successfully");
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error deleting note", e);
+                    if (listener != null) listener.onComplete(false, e.getMessage());
+                });
+    }
+
+    /**
+     * Listen for real-time notes
+     */
+    public ListenerRegistration getProjectNotes(String projectId, NoteCallback callback) {
+        Query query = db.collection(COLLECTION_PROJECTS)
+                .document(projectId)
+                .collection("notes")
+                .orderBy("timestamp");
+
+        return query.addSnapshotListener((querySnapshot, error) -> {
+            if (error != null) {
+                if (callback != null) callback.onError(error.getMessage());
+                return;
+            }
+
+            List<Note> notes = new ArrayList<>();
+            if (querySnapshot != null) {
+                for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                    Note note = doc.toObject(Note.class);
+                    if (note != null) notes.add(note);
+                }
+            }
+
+            if (callback != null) callback.onSuccess(notes);
+        });
+    }
+
 
     // ==================== HELPER METHOD FOR TYPE-SAFE LIST CONVERSION ====================
 

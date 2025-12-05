@@ -58,7 +58,7 @@
     
     <!-- Bottom Navigation -->
     <string name="nav_tasks">Tasks</string>
-    <string name="nav_chats">Chats</string>
+    <string name="nav_notes">Notes</string>
     <string name="nav_files">Files</string>
     <string name="nav_team">Team</string>
     

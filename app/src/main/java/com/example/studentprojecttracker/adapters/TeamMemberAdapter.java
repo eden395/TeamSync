@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,9 +23,18 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
 
     private List<TeamMember> teamMemberList;
     private ProfilePictureManager profilePictureManager;
+    private OnMemberInteractionListener listener;
+    private boolean isUserLeader;
 
-    public TeamMemberAdapter(List<TeamMember> teamMemberList) {
+    public interface OnMemberInteractionListener {
+        void onMemberEdit(TeamMember member, int position);
+        void onMemberDelete(TeamMember member, int position);
+    }
+
+    public TeamMemberAdapter(List<TeamMember> teamMemberList, boolean isUserLeader, OnMemberInteractionListener listener) {
         this.teamMemberList = teamMemberList;
+        this.isUserLeader = isUserLeader;
+        this.listener = listener;
         this.profilePictureManager = ProfilePictureManager.getInstance();
     }
 
@@ -39,7 +49,7 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
     @Override
     public void onBindViewHolder(@NonNull TeamMemberViewHolder holder, int position) {
         TeamMember member = teamMemberList.get(position);
-        holder.bind(member, profilePictureManager);
+        holder.bind(member, position, profilePictureManager, isUserLeader, listener);
     }
 
     @Override
@@ -59,6 +69,7 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
         private TextView statusBadge;
         private TextView tasksAssignedText;
         private TextView completionText;
+        private ImageView btnMemberMenu;
 
         public TeamMemberViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,9 +78,11 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
             statusBadge = itemView.findViewById(R.id.statusBadge);
             tasksAssignedText = itemView.findViewById(R.id.tasksAssignedText);
             completionText = itemView.findViewById(R.id.completionText);
+            btnMemberMenu = itemView.findViewById(R.id.btnMemberMenu);
         }
 
-        public void bind(TeamMember member, ProfilePictureManager pictureManager) {
+        public void bind(TeamMember member, int position, ProfilePictureManager pictureManager,
+                         boolean isUserLeader, OnMemberInteractionListener listener) {
             // Display member name
             displayMemberName(member);
 
@@ -83,6 +96,33 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
 
             // Load profile picture using ProfilePictureManager
             loadProfilePicture(member, pictureManager);
+
+            // Menu button visibility and actions
+            btnMemberMenu.setVisibility(isUserLeader ? View.VISIBLE : View.GONE);
+            if (isUserLeader) {
+                btnMemberMenu.setOnClickListener(v -> showMemberMenu(v, member, position, listener));
+            }
+        }
+
+        /**
+         * Show popup menu for member actions
+         */
+        private void showMemberMenu(View view, TeamMember member, int position, OnMemberInteractionListener listener) {
+            PopupMenu popup = new PopupMenu(view.getContext(), view);
+            popup.getMenu().add("Edit Member");
+            popup.getMenu().add("Remove Member");
+
+            popup.setOnMenuItemClickListener(item -> {
+                String title = item.getTitle().toString();
+                if ("Edit Member".equals(title)) {
+                    if (listener != null) listener.onMemberEdit(member, position);
+                } else if ("Remove Member".equals(title)) {
+                    if (listener != null) listener.onMemberDelete(member, position);
+                }
+                return true;
+            });
+
+            popup.show();
         }
 
         /**

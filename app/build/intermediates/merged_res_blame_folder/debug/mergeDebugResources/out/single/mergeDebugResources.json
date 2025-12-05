@@ -1,310 +1,362 @@
 [
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_send.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_send.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\menu_bottom_navigation_menu.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\menu\\bottom_navigation_menu.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_file.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_file.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\color_bottom_nav_color.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\color\\bottom_nav_color.xml"
     },
     {
         "merged": "com.example.studentprojecttracker.app-debug-5:/layout_item_team_member.xml.flat",
         "source": "com.example.studentprojecttracker.app-main-7:/layout/item_team_member.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_advisor.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_advisor.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_circle_button_background.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\circle_button_background.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_edit_profile.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_edit_profile.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_badge_medium.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/badge_medium.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\xml_backup_rules.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_launcher_foreground.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_img_file_icon.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\img_file_icon.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_avatar_placeholder.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_avatar_placeholder.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_login.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_profile.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_profile.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_item_task.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_task.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_calendar.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_calendar.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_item_member_progress.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_member_progress.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_dialog_change_password.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_change_password.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_projects_dashboard.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_projects_dashboard.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_profile.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_profile.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_badge_ahead.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/badge_ahead.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_person.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_person.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_baseline_android_24.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/baseline_android_24.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_avatar_placeholder.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_avatar_placeholder.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_badge_ahead.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\badge_ahead.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_item_file.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_file.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_files.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_files.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_role_selection.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_role_selection.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_fragment_chats.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_chats.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_badge_high.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/badge_high.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_team.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_team.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_team_placeholder.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_team_placeholder.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_dialog_add_project.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_add_project.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_fragment_tasks.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_tasks.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_team_member.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_team_member.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_login.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_login.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_add_task.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_add_task.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/xml_backup_rules.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/xml/backup_rules.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_member_progress.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_member_progress.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_profile.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_profile.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_badge_behind.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\badge_behind.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_input_background.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/input_background.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_chat_receiver.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_chat_receiver.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_dialog_add_member.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/dialog_add_member.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_fragment_team.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_team.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_send.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_send.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_item_project.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/item_project.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_fragment_chats.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_chats.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\xml_data_extraction_rules.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_tasks.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_tasks.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_rounded_background.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/rounded_background.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_tasks.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_tasks.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_dialog_change_password.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/dialog_change_password.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_edit_profile.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_edit_profile.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_arrow_back.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_arrow_back.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_main.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_badge_behind.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/badge_behind.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_launcher_background.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_note_background_gradient.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\note_background_gradient.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/menu_bottom_navigation_menu.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/menu/bottom_navigation_menu.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_group.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_group.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_main.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_main.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_fragment_files.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_files.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_badge_high.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\badge_high.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_rounded_background.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\rounded_background.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_logout.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_logout.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_lock.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_lock.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_fragment_team.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_team.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_bg_chat_sender.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\bg_chat_sender.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_signup.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_signup.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_add_task.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_add_task.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_add.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_add.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_circle_button_background.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/circle_button_background.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_attach.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_attach.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_circle_background.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/circle_background.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_fragment_tasks.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_tasks.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_lock.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_lock.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_advisor.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_advisor.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_back.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_back.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_fragment_profile.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_dialog_add_member.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_add_member.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_email.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_email.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_upload.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_upload.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_group.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_group.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_input_background.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\input_background.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_team.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_team.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_info_background.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\info_background.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/xml/data_extraction_rules.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_note.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_note.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_launcher_background.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_upload.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_upload.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_projects_dashboard.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_projects_dashboard.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_attach.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_attach.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_dialog_add_project.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/dialog_add_project.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\menu_note_menu.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\menu\\note_menu.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_file.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_file.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_role_selection.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_role_selection.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_badge_low.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\badge_low.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_activity_advisor_projects_view.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/activity_advisor_projects_view.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_advisor_projects_view.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_advisor_projects_view.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_files.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_files.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_edit.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_edit.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_more_vert.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_more_vert.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_team_placeholder.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_team_placeholder.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/layout_fragment_profile.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/layout/fragment_profile.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_chat_sender.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_chat_sender.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_img_file_icon.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/img_file_icon.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_badge_low.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/badge_low.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_fragment_files.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_files.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_dialog_edit_note.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\dialog_edit_note.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_edit.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_edit.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_logout.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_logout.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_info_background.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/info_background.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_badge_medium.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\badge_medium.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_calendar.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_calendar.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_back.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_back.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_chats.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_chats.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_chats.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_chats.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_person.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_person.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_project.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_project.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_badge_on_track.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/badge_on_track.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_camera.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_camera.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_camera.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_camera.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_profile.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_profile.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_fragment_notes.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\fragment_notes.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/drawable_ic_download.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/drawable/ic_download.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_baseline_android_24.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\baseline_android_24.xml"
     },
     {
-        "merged": "com.example.studentprojecttracker.app-debug-5:/color_bottom_nav_color.xml.flat",
-        "source": "com.example.studentprojecttracker.app-main-7:/color/bottom_nav_color.xml"
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_chat_message.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_chat_message.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\color_yellow_light.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\color\\yellow_light.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_file.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_file.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_circle_background.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\circle_background.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_activity_signup.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\activity_signup.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_arrow_back.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_arrow_back.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_download.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_download.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_email.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_email.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_ic_more_vert.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\ic_more_vert.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\layout_item_task.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\layout\\item_task.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_bg_chat_receiver.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\bg_chat_receiver.xml"
+    },
+    {
+        "merged": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-debug-5:\\drawable_badge_on_track.xml.flat",
+        "source": "D:\\gradle\\daemon\\8.11.1\\com.example.studentprojecttracker.app-main-7:\\drawable\\badge_on_track.xml"
     }
 ]

@@ -33,9 +33,6 @@ public final class ActivityProjectsDashboardBinding implements ViewBinding {
   public final MaterialButton btnProjects;
 
   @NonNull
-  public final MaterialButton btnReminders;
-
-  @NonNull
   public final FloatingActionButton fabAddProject;
 
   @NonNull
@@ -49,14 +46,13 @@ public final class ActivityProjectsDashboardBinding implements ViewBinding {
 
   private ActivityProjectsDashboardBinding(@NonNull ConstraintLayout rootView,
       @NonNull ImageView btnLogout, @NonNull ImageView btnProfile,
-      @NonNull MaterialButton btnProjects, @NonNull MaterialButton btnReminders,
-      @NonNull FloatingActionButton fabAddProject, @NonNull RecyclerView rvProjects,
-      @NonNull LinearLayout tabsLayout, @NonNull LinearLayout topBar) {
+      @NonNull MaterialButton btnProjects, @NonNull FloatingActionButton fabAddProject,
+      @NonNull RecyclerView rvProjects, @NonNull LinearLayout tabsLayout,
+      @NonNull LinearLayout topBar) {
     this.rootView = rootView;
     this.btnLogout = btnLogout;
     this.btnProfile = btnProfile;
     this.btnProjects = btnProjects;
-    this.btnReminders = btnReminders;
     this.fabAddProject = fabAddProject;
     this.rvProjects = rvProjects;
     this.tabsLayout = tabsLayout;
@@ -108,12 +104,6 @@ public final class ActivityProjectsDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btnReminders;
-      MaterialButton btnReminders = ViewBindings.findChildViewById(rootView, id);
-      if (btnReminders == null) {
-        break missingId;
-      }
-
       id = R.id.fabAddProject;
       FloatingActionButton fabAddProject = ViewBindings.findChildViewById(rootView, id);
       if (fabAddProject == null) {
@@ -139,7 +129,7 @@ public final class ActivityProjectsDashboardBinding implements ViewBinding {
       }
 
       return new ActivityProjectsDashboardBinding((ConstraintLayout) rootView, btnLogout,
-          btnProfile, btnProjects, btnReminders, fabAddProject, rvProjects, tabsLayout, topBar);
+          btnProfile, btnProjects, fabAddProject, rvProjects, tabsLayout, topBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

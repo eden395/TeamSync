@@ -25,6 +25,9 @@ public final class ItemTaskBinding implements ViewBinding {
   public final ImageView btnTaskMenu;
 
   @NonNull
+  public final MaterialCardView cardView;
+
+  @NonNull
   public final CheckBox taskCheckbox;
 
   @NonNull
@@ -40,10 +43,12 @@ public final class ItemTaskBinding implements ViewBinding {
   public final TextView tvTaskName;
 
   private ItemTaskBinding(@NonNull MaterialCardView rootView, @NonNull ImageView btnTaskMenu,
-      @NonNull CheckBox taskCheckbox, @NonNull TextView tvAssignee, @NonNull TextView tvDueDate,
-      @NonNull TextView tvPriority, @NonNull TextView tvTaskName) {
+      @NonNull MaterialCardView cardView, @NonNull CheckBox taskCheckbox,
+      @NonNull TextView tvAssignee, @NonNull TextView tvDueDate, @NonNull TextView tvPriority,
+      @NonNull TextView tvTaskName) {
     this.rootView = rootView;
     this.btnTaskMenu = btnTaskMenu;
+    this.cardView = cardView;
     this.taskCheckbox = taskCheckbox;
     this.tvAssignee = tvAssignee;
     this.tvDueDate = tvDueDate;
@@ -84,6 +89,8 @@ public final class ItemTaskBinding implements ViewBinding {
         break missingId;
       }
 
+      MaterialCardView cardView = (MaterialCardView) rootView;
+
       id = R.id.taskCheckbox;
       CheckBox taskCheckbox = ViewBindings.findChildViewById(rootView, id);
       if (taskCheckbox == null) {
@@ -114,8 +121,8 @@ public final class ItemTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemTaskBinding((MaterialCardView) rootView, btnTaskMenu, taskCheckbox, tvAssignee,
-          tvDueDate, tvPriority, tvTaskName);
+      return new ItemTaskBinding((MaterialCardView) rootView, btnTaskMenu, cardView, taskCheckbox,
+          tvAssignee, tvDueDate, tvPriority, tvTaskName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

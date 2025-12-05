@@ -1,0 +1,6 @@
+com.example.studentprojecttracker.test.app-androidTest-0 C:\Users\lincu\AndroidStudioProjects\TeamSync\app\build\generated\res\resValues\androidTest\debug
+com.example.studentprojecttracker.test.app-mergeDebugAndroidTestResources-1 C:\Users\lincu\AndroidStudioProjects\TeamSync\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.studentprojecttracker.test.app-mergeDebugAndroidTestResources-2 C:\Users\lincu\AndroidStudioProjects\TeamSync\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.studentprojecttracker.test.app-debugAndroidTest-3 C:\Users\lincu\AndroidStudioProjects\TeamSync\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
+com.example.studentprojecttracker.test.app-jetified-core-1.5.0-4 D:\gradle\caches\8.11.1\transforms\c005f9b94ba5306a36a27217444887da\transformed\jetified-core-1.5.0\res
+com.example.studentprojecttracker.test.app-jetified-annotation-experimental-1.3.0-5 D:\gradle\caches\8.11.1\transforms\cbdc12d385c22f330a53cd1a709245b1\transformed\jetified-annotation-experimental-1.3.0\res
