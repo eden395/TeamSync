@@ -8,12 +8,15 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studentprojecttracker.R;
 import com.example.studentprojecttracker.models.Task;
+import com.example.studentprojecttracker.models.User;
+import com.example.studentprojecttracker.utils.FirestoreHelper;
 
 import java.util.List;
 
@@ -83,7 +86,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public void bind(Task task, int position) {
             tvTaskName.setText(task.getTaskName());
             tvPriority.setText(task.getPriority());
-            tvAssignee.setText("Assigned to: " + task.getAssigneeName());
+
+            // Load and display assignee name (handles email-to-name conversion)
+            displayAssigneeName(task);
+
             tvDueDate.setText("Due: " + task.getDueDate());
 
             // Set priority badge background
@@ -126,6 +132,68 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             } else {
                 btnMenu.setVisibility(View.GONE);
             }
+        }
+
+        /**
+         * Display assignee name with email-to-name conversion if needed
+         */
+        private void displayAssigneeName(Task task) {
+            String assigneeName = task.getAssigneeName();
+            String assigneeId = task.getAssigneeId();
+
+            Log.d("TaskAdapter", "Task: " + task.getTaskName());
+            Log.d("TaskAdapter", "AssigneeName: " + assigneeName);
+            Log.d("TaskAdapter", "AssigneeId: " + assigneeId);
+
+            // If assigneeName looks like a proper name (not email), use it
+            if (assigneeName != null && !assigneeName.isEmpty() && !assigneeName.contains("@")) {
+                tvAssignee.setText("Assigned to: " + assigneeName);
+                return;
+            }
+
+            // If no valid assignee
+            if (assigneeId == null || assigneeId.isEmpty()) {
+                tvAssignee.setText("Assigned to: Unassigned");
+                return;
+            }
+
+            // Show email username as placeholder while loading
+            String placeholder = extractUsernameFromEmail(assigneeId);
+            tvAssignee.setText("Assigned to: " + placeholder);
+
+            Log.d("TaskAdapter", "Querying Firestore for: " + assigneeId);
+
+            // Try to load actual name from Firestore
+            FirestoreHelper firestoreHelper = new FirestoreHelper();
+            firestoreHelper.getUserProfileByEmail(assigneeId, new FirestoreHelper.UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    Log.d("TaskAdapter", "Firestore SUCCESS - Name: " + user.getName());
+                    String displayName = user.getName();
+                    if (displayName != null && !displayName.isEmpty() && !displayName.contains("@")) {
+                        tvAssignee.setText("Assigned to: " + displayName);
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    Log.e("TaskAdapter", "Firestore ERROR: " + error);
+                }
+            });
+        }
+
+        /**
+         * Extract and capitalize username from email
+         */
+        private String extractUsernameFromEmail(String email) {
+            if (email != null && email.contains("@")) {
+                String username = email.substring(0, email.indexOf("@"));
+                if (!username.isEmpty()) {
+                    return username.substring(0, 1).toUpperCase() + username.substring(1);
+                }
+                return username;
+            }
+            return email != null ? email : "Unknown";
         }
 
         private void showTaskMenu(View view, Task task, int position) {

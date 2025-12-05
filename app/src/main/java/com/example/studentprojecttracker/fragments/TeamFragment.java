@@ -1,6 +1,7 @@
 package com.example.studentprojecttracker.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,19 +112,35 @@ public class TeamFragment extends Fragment {
     /**
      * Load individual member with profile and stats
      */
+    /**
+     * Load individual member with profile and stats
+     */
     private void loadMemberWithProfile(String memberId, List<TeamMember> teamMembers,
                                        int[] loadedCount, int totalMembers) {
-        firestoreHelper.getUserProfile(memberId, new FirestoreHelper.UserCallback() {
+        Log.d("TeamFragment", "=== Loading profile for: " + memberId + " ===");
+
+        // Use email-based query since memberIds contain emails
+        firestoreHelper.getUserProfileByEmail(memberId, new FirestoreHelper.UserCallback() {
             @Override
             public void onSuccess(User user) {
-                // Create TeamMember with user data from Firestore
+                Log.d("TeamFragment", "✓ Firestore SUCCESS for: " + memberId);
+                Log.d("TeamFragment", "  - User ID: " + user.getUserId());
+                Log.d("TeamFragment", "  - Name: " + user.getName());
+                Log.d("TeamFragment", "  - Email: " + user.getEmail());
+                Log.d("TeamFragment", "  - PhotoUrl: " + user.getPhotoUrl());
+
+                // Use the name from Firestore (should be the display name)
                 String displayName = user.getName();
+
+                // Check if name is valid
                 if (displayName == null || displayName.isEmpty()) {
-                    // Fallback to email username if no name set
-                    displayName = user.getEmail();
-                    if (displayName != null && displayName.contains("@")) {
-                        displayName = displayName.substring(0, displayName.indexOf("@"));
-                    }
+                    Log.w("TeamFragment", "  ⚠ Name is null/empty, using email fallback");
+                    displayName = extractUsernameFromEmail(memberId);
+                } else if (displayName.contains("@")) {
+                    Log.w("TeamFragment", "  ⚠ Name looks like email, using email fallback");
+                    displayName = extractUsernameFromEmail(memberId);
+                } else {
+                    Log.d("TeamFragment", "  ✓ Using name from Firestore: " + displayName);
                 }
 
                 TeamMember member = new TeamMember(
@@ -133,6 +150,8 @@ public class TeamFragment extends Fragment {
                 );
                 member.setPhotoUrl(user.getPhotoUrl());
 
+                Log.d("TeamFragment", "  → Created TeamMember with name: " + displayName);
+
                 // Calculate member statistics
                 calculateMemberStats(member, currentProject.getProjectId());
 
@@ -141,17 +160,19 @@ public class TeamFragment extends Fragment {
 
                 // Update UI when all members are loaded
                 if (loadedCount[0] == totalMembers) {
+                    Log.d("TeamFragment", "=== All " + totalMembers + " members loaded ===");
                     updateTeamMembersList(teamMembers);
                 }
             }
 
             @Override
             public void onError(String error) {
-                // User doesn't exist in Firestore, create member with email as fallback
-                String displayName = memberId;
-                if (displayName.contains("@")) {
-                    displayName = displayName.substring(0, displayName.indexOf("@"));
-                }
+                Log.e("TeamFragment", "✗ Firestore FAILED for: " + memberId);
+                Log.e("TeamFragment", "  Error: " + error);
+
+                // Create member with email username as fallback
+                String displayName = extractUsernameFromEmail(memberId);
+                Log.d("TeamFragment", "  → Using fallback name: " + displayName);
 
                 TeamMember member = new TeamMember(memberId, displayName, memberId);
                 member.setUserId(memberId);
@@ -163,6 +184,20 @@ public class TeamFragment extends Fragment {
                 }
             }
         });
+    }
+
+    /**
+     * Extract username from email and capitalize
+     */
+    private String extractUsernameFromEmail(String email) {
+        if (email != null && email.contains("@")) {
+            String username = email.substring(0, email.indexOf("@"));
+            if (!username.isEmpty()) {
+                return username.substring(0, 1).toUpperCase() + username.substring(1);
+            }
+            return username;
+        }
+        return email;
     }
 
     /**

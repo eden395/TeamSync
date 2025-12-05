@@ -435,6 +435,48 @@ public class FirestoreHelper {
                 });
     }
 
+    /**
+     * Get user profile by email (queries the email field instead of document ID)
+     */
+    public void getUserProfileByEmail(String email, UserCallback callback) {
+        db.collection(COLLECTION_USERS)
+                .whereEqualTo("email", email)
+                .limit(1)
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    if (!querySnapshot.isEmpty()) {
+                        DocumentSnapshot doc = querySnapshot.getDocuments().get(0);
+                        try {
+                            String id = doc.getString("userId");
+                            String name = doc.getString("name");
+                            String userEmail = doc.getString("email");
+                            String role = doc.getString("role");
+                            String photoUrl = doc.getString("photoUrl");
+
+                            User user = new User(id, name, userEmail, role, photoUrl);
+                            if (callback != null) {
+                                callback.onSuccess(user);
+                            }
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error parsing user document", e);
+                            if (callback != null) {
+                                callback.onError(e.getMessage());
+                            }
+                        }
+                    } else {
+                        if (callback != null) {
+                            callback.onError("User not found");
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error getting user profile by email", e);
+                    if (callback != null) {
+                        callback.onError(e.getMessage());
+                    }
+                });
+    }
+
     // ==================== HELPER METHOD FOR TYPE-SAFE LIST CONVERSION ====================
 
     @SuppressWarnings("unchecked")

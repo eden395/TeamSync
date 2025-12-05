@@ -42,6 +42,12 @@ public class ProfilePictureManager {
      * @param userId User ID or email
      * @param imageView Target ImageView
      */
+    /**
+     * Load profile picture from Firebase Auth or Firestore
+     * @param context Context for Glide
+     * @param userId User ID or email
+     * @param imageView Target ImageView
+     */
     public void loadProfilePicture(Context context, String userId, ImageView imageView) {
         if (context == null || userId == null || imageView == null) {
             return;
@@ -67,8 +73,35 @@ public class ProfilePictureManager {
             }
         }
 
-        // Load from Firestore
-        loadProfilePictureFromFirestore(context, userId, imageView);
+        // Load from Firestore - use email query if it looks like an email
+        if (userId.contains("@")) {
+            loadProfilePictureByEmail(context, userId, imageView);
+        } else {
+            loadProfilePictureFromFirestore(context, userId, imageView);
+        }
+    }
+
+    /**
+     * Load profile picture from Firestore by email
+     */
+    private void loadProfilePictureByEmail(Context context, String email, ImageView imageView) {
+        firestoreHelper.getUserProfileByEmail(email, new FirestoreHelper.UserCallback() {
+            @Override
+            public void onSuccess(User user) {
+                if (user.getPhotoUrl() != null && !user.getPhotoUrl().isEmpty()) {
+                    photoUrlCache.put(email, user.getPhotoUrl());
+                    loadImageWithGlide(context, user.getPhotoUrl(), imageView);
+                } else {
+                    imageView.setImageResource(R.drawable.ic_avatar_placeholder);
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e(TAG, "Error loading profile picture for " + email + ": " + error);
+                imageView.setImageResource(R.drawable.ic_avatar_placeholder);
+            }
+        });
     }
 
     /**

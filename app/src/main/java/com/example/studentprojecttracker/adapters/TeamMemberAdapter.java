@@ -1,6 +1,6 @@
 package com.example.studentprojecttracker.adapters;
 
-import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studentprojecttracker.R;
 import com.example.studentprojecttracker.models.TeamMember;
+import com.example.studentprojecttracker.models.User;
+import com.example.studentprojecttracker.utils.FirestoreHelper;
 import com.example.studentprojecttracker.utils.ProfilePictureManager;
 
 import java.util.List;
@@ -69,9 +70,8 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
         }
 
         public void bind(TeamMember member, ProfilePictureManager pictureManager) {
-            // Get display name (prioritize proper name over email)
-            String displayName = getDisplayName(member);
-            memberNameText.setText(displayName);
+            // Display member name
+            displayMemberName(member);
 
             statusBadge.setText(member.getStatus());
             tasksAssignedText.setText(String.valueOf(member.getTasksAssigned()));
@@ -86,35 +86,86 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
         }
 
         /**
-         * Get proper display name from TeamMember
-         * Priority: Name (if not email-like) > Username from email > "Unknown User"
+         * Display member name with Firestore lookup if needed
          */
-        private String getDisplayName(TeamMember member) {
+        private void displayMemberName(TeamMember member) {
             String name = member.getName();
-
-            // Check if name is valid (not null, not empty, not an email)
-            if (name != null && !name.isEmpty() && !name.contains("@")) {
-                return name;
-            }
-
-            // Try to extract username from email
             String email = member.getEmail();
-            if (email != null && !email.isEmpty()) {
-                if (email.contains("@")) {
-                    // Extract part before @
-                    String username = email.substring(0, email.indexOf("@"));
-                    // Capitalize first letter
-                    if (!username.isEmpty()) {
-                        return username.substring(0, 1).toUpperCase() + username.substring(1);
-                    }
-                    return username;
-                }
-                // Email doesn't contain @, use as is
-                return email;
+            String userId = member.getUserId();
+
+            Log.d("TeamMemberAdapter", "Member - Name: " + name + ", Email: " + email + ", UserId: " + userId);
+
+            // If we have a valid display name (not email-like), use it
+            if (name != null && !name.isEmpty() && !name.contains("@")) {
+                memberNameText.setText(name);
+                return;
             }
 
-            // No valid name or email found
-            return "Unknown User";
+            // Show placeholder while loading
+            String placeholder = extractUsernameFromEmail(email != null ? email : userId);
+            memberNameText.setText(placeholder);
+
+            // Try to load actual name from Firestore
+            String identifier = email != null ? email : userId;
+            if (identifier != null && !identifier.isEmpty()) {
+                Log.d("TeamMemberAdapter", "Loading name from Firestore for: " + identifier);
+
+                FirestoreHelper firestoreHelper = new FirestoreHelper();
+
+                // Use email query since we're dealing with emails
+                if (identifier.contains("@")) {
+                    firestoreHelper.getUserProfileByEmail(identifier, new FirestoreHelper.UserCallback() {
+                        @Override
+                        public void onSuccess(User user) {
+                            String displayName = user.getName();
+                            Log.d("TeamMemberAdapter", "Firestore SUCCESS - Name: " + displayName);
+
+                            if (displayName != null && !displayName.isEmpty() && !displayName.contains("@")) {
+                                memberNameText.setText(displayName);
+                            }
+                            // If name is still email-like, keep the placeholder
+                        }
+
+                        @Override
+                        public void onError(String error) {
+                            Log.e("TeamMemberAdapter", "Firestore ERROR: " + error);
+                            // Keep placeholder on error
+                        }
+                    });
+                } else {
+                    // Try by userId if not an email
+                    firestoreHelper.getUserProfile(identifier, new FirestoreHelper.UserCallback() {
+                        @Override
+                        public void onSuccess(User user) {
+                            String displayName = user.getName();
+                            Log.d("TeamMemberAdapter", "Firestore SUCCESS - Name: " + displayName);
+
+                            if (displayName != null && !displayName.isEmpty() && !displayName.contains("@")) {
+                                memberNameText.setText(displayName);
+                            }
+                        }
+
+                        @Override
+                        public void onError(String error) {
+                            Log.e("TeamMemberAdapter", "Firestore ERROR: " + error);
+                        }
+                    });
+                }
+            }
+        }
+
+        /**
+         * Extract and capitalize username from email
+         */
+        private String extractUsernameFromEmail(String email) {
+            if (email != null && email.contains("@")) {
+                String username = email.substring(0, email.indexOf("@"));
+                if (!username.isEmpty()) {
+                    return username.substring(0, 1).toUpperCase() + username.substring(1);
+                }
+                return username;
+            }
+            return email != null ? email : "Unknown User";
         }
 
         /**

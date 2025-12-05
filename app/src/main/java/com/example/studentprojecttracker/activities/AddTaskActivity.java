@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -17,10 +18,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.example.studentprojecttracker.R;
 import com.example.studentprojecttracker.models.Task;
 import com.example.studentprojecttracker.models.Project;
+import com.example.studentprojecttracker.models.User;
+import com.example.studentprojecttracker.utils.FirestoreHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class AddTaskActivity extends AppCompatActivity {
@@ -31,14 +36,19 @@ public class AddTaskActivity extends AppCompatActivity {
     private ImageView btnBack;
 
     private Project currentProject;
-    private Task editingTask; // null if creating new task
+    private Task editingTask;
     private boolean isEditMode = false;
     private List<String> memberEmails;
+    private Map<String, String> emailToNameMap; // Map email to display name
+    private FirestoreHelper firestoreHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        firestoreHelper = new FirestoreHelper();
+        emailToNameMap = new HashMap<>();
 
         // Get project and task data
         currentProject = (Project) getIntent().getSerializableExtra("project");
@@ -91,18 +101,92 @@ public class AddTaskActivity extends AppCompatActivity {
             memberEmails.addAll(currentProject.getMemberIds());
         }
 
-        // Add "Unassigned" option
+        // Load display names for all members
+        loadMemberDisplayNames();
+    }
+
+    /**
+     * Load display names from Firestore for all project members
+     */
+    private void loadMemberDisplayNames() {
         List<String> displayNames = new ArrayList<>();
         displayNames.add("Unassigned");
-        displayNames.addAll(memberEmails);
 
-        ArrayAdapter<String> memberAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                displayNames
-        );
-        memberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerAssignTo.setAdapter(memberAdapter);
+        if (memberEmails.isEmpty()) {
+            updateAssigneeSpinner(displayNames);
+            return;
+        }
+
+        final int[] loadedCount = {0};
+        final int totalMembers = memberEmails.size();
+
+        for (String email : memberEmails) {
+            firestoreHelper.getUserProfileByEmail(email, new FirestoreHelper.UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    String displayName = user.getName();
+                    if (displayName == null || displayName.isEmpty() || displayName.contains("@")) {
+                        // Fallback to email username
+                        displayName = extractUsernameFromEmail(email);
+                    }
+
+                    emailToNameMap.put(email, displayName);
+                    displayNames.add(displayName);
+                    loadedCount[0]++;
+
+                    if (loadedCount[0] == totalMembers) {
+                        updateAssigneeSpinner(displayNames);
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    // Use email username as fallback
+                    String displayName = extractUsernameFromEmail(email);
+                    emailToNameMap.put(email, displayName);
+                    displayNames.add(displayName);
+                    loadedCount[0]++;
+
+                    if (loadedCount[0] == totalMembers) {
+                        updateAssigneeSpinner(displayNames);
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Update assignee spinner with display names
+     */
+    private void updateAssigneeSpinner(List<String> displayNames) {
+        runOnUiThread(() -> {
+            ArrayAdapter<String> memberAdapter = new ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    displayNames
+            );
+            memberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerAssignTo.setAdapter(memberAdapter);
+
+            // If editing, set the current assignee
+            if (isEditMode && editingTask != null) {
+                loadTaskData();
+            }
+        });
+    }
+
+    /**
+     * Extract username from email and capitalize
+     */
+    private String extractUsernameFromEmail(String email) {
+        if (email != null && email.contains("@")) {
+            String username = email.substring(0, email.indexOf("@"));
+            if (!username.isEmpty()) {
+                return username.substring(0, 1).toUpperCase() + username.substring(1);
+            }
+            return username;
+        }
+        return email;
     }
 
     private void loadTaskData() {
@@ -122,12 +206,18 @@ public class AddTaskActivity extends AppCompatActivity {
                 }
             }
 
-            // Set assignee
+            // Set assignee by finding the display name
             String assigneeId = editingTask.getAssigneeId();
-            if (assigneeId != null) {
-                int position = memberEmails.indexOf(assigneeId) + 1; // +1 for "Unassigned"
-                if (position > 0) {
-                    spinnerAssignTo.setSelection(position);
+            if (assigneeId != null && emailToNameMap.containsKey(assigneeId)) {
+                String displayName = emailToNameMap.get(assigneeId);
+
+                // Find position in spinner
+                ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerAssignTo.getAdapter();
+                for (int i = 0; i < adapter.getCount(); i++) {
+                    if (adapter.getItem(i).equals(displayName)) {
+                        spinnerAssignTo.setSelection(i);
+                        break;
+                    }
                 }
             }
 
@@ -179,8 +269,16 @@ public class AddTaskActivity extends AppCompatActivity {
         String assigneeName = "Unassigned";
 
         if (assigneePosition > 0) { // 0 is "Unassigned"
+            // Get email from memberEmails list
             assigneeId = memberEmails.get(assigneePosition - 1);
-            assigneeName = assigneeId; // You can replace this with actual names later
+
+            // Get display name from map
+            assigneeName = emailToNameMap.get(assigneeId);
+            if (assigneeName == null || assigneeName.isEmpty()) {
+                assigneeName = extractUsernameFromEmail(assigneeId);
+            }
+
+            Log.d("AddTaskActivity", "Saving task - AssigneeId: " + assigneeId + ", AssigneeName: " + assigneeName);
         }
 
         // Get current user ID
