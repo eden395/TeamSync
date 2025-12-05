@@ -30,10 +30,15 @@ import com.example.studentprojecttracker.activities.AddTaskActivity;
 import com.example.studentprojecttracker.adapters.TaskAdapter;
 import com.example.studentprojecttracker.models.Project;
 import com.example.studentprojecttracker.models.Task;
+import com.example.studentprojecttracker.models.User;
 import com.example.studentprojecttracker.utils.FirestoreHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class TasksFragment extends Fragment {
 
@@ -54,6 +59,9 @@ public class TasksFragment extends Fragment {
     private FirestoreHelper firestoreHelper;
     private ProgressDialog progressDialog;
     private ListenerRegistration tasksListener;
+
+    // Cache for user display names (email -> display name)
+    private Map<String, String> userDisplayNameCache = new HashMap<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -300,7 +308,9 @@ public class TasksFragment extends Fragment {
 
                         allTasks.clear();
                         allTasks.addAll(tasks);
-                        filterTasks();
+
+                        // Load user display names before filtering tasks
+                        loadUserDisplayNames(tasks);
                     }
 
                     @Override
@@ -321,6 +331,133 @@ public class TasksFragment extends Fragment {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    /**
+     * Load display names for all unique assignees in the task list
+     * Following the same pattern as TeamFragment
+     */
+    private void loadUserDisplayNames(List<Task> tasks) {
+        // Collect all unique assignee IDs (emails)
+        Set<String> uniqueAssigneeIds = new HashSet<>();
+        for (Task task : tasks) {
+            if (task.getAssigneeId() != null && !task.getAssigneeId().isEmpty()) {
+                uniqueAssigneeIds.add(task.getAssigneeId());
+            }
+        }
+
+        if (uniqueAssigneeIds.isEmpty()) {
+            // No assignees to load, proceed with filtering
+            filterTasks();
+            return;
+        }
+
+        Log.d(TAG, "Loading display names for " + uniqueAssigneeIds.size() + " unique assignees");
+
+        final int[] loadedCount = {0};
+        final int totalUsers = uniqueAssigneeIds.size();
+
+        for (String assigneeId : uniqueAssigneeIds) {
+            loadUserDisplayName(assigneeId, loadedCount, totalUsers, tasks);
+        }
+    }
+
+    /**
+     * Load individual user display name from Firestore
+     * Following the same pattern as TeamFragment's loadMemberWithProfile
+     */
+    private void loadUserDisplayName(String assigneeId, int[] loadedCount, int totalUsers, List<Task> tasks) {
+        Log.d(TAG, "=== Loading display name for: " + assigneeId + " ===");
+
+        // Use email-based query since assigneeIds contain emails
+        firestoreHelper.getUserProfileByEmail(assigneeId, new FirestoreHelper.UserCallback() {
+            @Override
+            public void onSuccess(User user) {
+                Log.d(TAG, "✓ Firestore SUCCESS for: " + assigneeId);
+                Log.d(TAG, "  - User ID: " + user.getUserId());
+                Log.d(TAG, "  - Name: " + user.getName());
+                Log.d(TAG, "  - Email: " + user.getEmail());
+
+                // Use the name from Firestore (should be the display name)
+                String displayName = user.getName();
+
+                // Check if name is valid
+                if (displayName == null || displayName.isEmpty()) {
+                    Log.w(TAG, "  ⚠ Name is null/empty, using email fallback");
+                    displayName = extractUsernameFromEmail(assigneeId);
+                } else if (displayName.contains("@")) {
+                    Log.w(TAG, "  ⚠ Name looks like email, using email fallback");
+                    displayName = extractUsernameFromEmail(assigneeId);
+                } else {
+                    Log.d(TAG, "  ✓ Using name from Firestore: " + displayName);
+                }
+
+                // Cache the display name
+                userDisplayNameCache.put(assigneeId, displayName);
+                Log.d(TAG, "  → Cached display name: " + displayName);
+
+                loadedCount[0]++;
+
+                // Update tasks when all users are loaded
+                if (loadedCount[0] == totalUsers) {
+                    Log.d(TAG, "=== All " + totalUsers + " user names loaded ===");
+                    updateTasksWithDisplayNames(tasks);
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e(TAG, "✗ Firestore FAILED for: " + assigneeId);
+                Log.e(TAG, "  Error: " + error);
+
+                // Create fallback display name from email
+                String displayName = extractUsernameFromEmail(assigneeId);
+                Log.d(TAG, "  → Using fallback name: " + displayName);
+
+                // Cache the fallback name
+                userDisplayNameCache.put(assigneeId, displayName);
+
+                loadedCount[0]++;
+
+                if (loadedCount[0] == totalUsers) {
+                    updateTasksWithDisplayNames(tasks);
+                }
+            }
+        });
+    }
+
+    /**
+     * Update all tasks with their cached display names
+     */
+    private void updateTasksWithDisplayNames(List<Task> tasks) {
+        Log.d(TAG, "Updating " + tasks.size() + " tasks with display names");
+
+        for (Task task : tasks) {
+            String assigneeId = task.getAssigneeId();
+            if (assigneeId != null && userDisplayNameCache.containsKey(assigneeId)) {
+                String displayName = userDisplayNameCache.get(assigneeId);
+                task.setAssigneeName(displayName);
+                Log.d(TAG, "Task '" + task.getTaskName() + "' assigned to: " + displayName);
+            }
+        }
+
+        // Now filter and display tasks
+        filterTasks();
+    }
+
+    /**
+     * Extract username from email and capitalize
+     * Same logic as TeamFragment
+     */
+    private String extractUsernameFromEmail(String email) {
+        if (email != null && email.contains("@")) {
+            String username = email.substring(0, email.indexOf("@"));
+            if (!username.isEmpty()) {
+                return username.substring(0, 1).toUpperCase() + username.substring(1);
+            }
+            return username;
+        }
+        return email != null ? email : "Unknown";
     }
 
     private void filterTasks() {

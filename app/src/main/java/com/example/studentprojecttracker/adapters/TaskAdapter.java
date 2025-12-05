@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studentprojecttracker.R;
 import com.example.studentprojecttracker.models.Task;
-import com.example.studentprojecttracker.models.User;
-import com.example.studentprojecttracker.utils.FirestoreHelper;
 
 import java.util.List;
 
@@ -87,7 +85,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             tvTaskName.setText(task.getTaskName());
             tvPriority.setText(task.getPriority());
 
-            // Load and display assignee name (handles email-to-name conversion)
+            // Display assignee name (already loaded by TasksFragment)
             displayAssigneeName(task);
 
             tvDueDate.setText("Due: " + task.getDueDate());
@@ -135,7 +133,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
 
         /**
-         * Display assignee name with email-to-name conversion if needed
+         * Display assignee name
+         * The display name is already loaded by TasksFragment, so we just display it
+         * Following the same pattern as TeamFragment
          */
         private void displayAssigneeName(Task task) {
             String assigneeName = task.getAssigneeName();
@@ -145,45 +145,30 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             Log.d("TaskAdapter", "AssigneeName: " + assigneeName);
             Log.d("TaskAdapter", "AssigneeId: " + assigneeId);
 
-            // If assigneeName looks like a proper name (not email), use it
+            // If assigneeName is available and looks like a proper name (not email), use it
             if (assigneeName != null && !assigneeName.isEmpty() && !assigneeName.contains("@")) {
                 tvAssignee.setText("Assigned to: " + assigneeName);
+                Log.d("TaskAdapter", "✓ Displaying name: " + assigneeName);
                 return;
             }
 
-            // If no valid assignee
+            // If no valid assignee ID
             if (assigneeId == null || assigneeId.isEmpty()) {
                 tvAssignee.setText("Assigned to: Unassigned");
+                Log.d("TaskAdapter", "→ No assignee");
                 return;
             }
 
-            // Show email username as placeholder while loading
-            String placeholder = extractUsernameFromEmail(assigneeId);
-            tvAssignee.setText("Assigned to: " + placeholder);
-
-            Log.d("TaskAdapter", "Querying Firestore for: " + assigneeId);
-
-            // Try to load actual name from Firestore
-            FirestoreHelper firestoreHelper = new FirestoreHelper();
-            firestoreHelper.getUserProfileByEmail(assigneeId, new FirestoreHelper.UserCallback() {
-                @Override
-                public void onSuccess(User user) {
-                    Log.d("TaskAdapter", "Firestore SUCCESS - Name: " + user.getName());
-                    String displayName = user.getName();
-                    if (displayName != null && !displayName.isEmpty() && !displayName.contains("@")) {
-                        tvAssignee.setText("Assigned to: " + displayName);
-                    }
-                }
-
-                @Override
-                public void onError(String error) {
-                    Log.e("TaskAdapter", "Firestore ERROR: " + error);
-                }
-            });
+            // Fallback: extract username from email
+            // This should rarely happen since TasksFragment pre-loads all names
+            String displayName = extractUsernameFromEmail(assigneeId);
+            tvAssignee.setText("Assigned to: " + displayName);
+            Log.d("TaskAdapter", "⚠ Using email fallback: " + displayName);
         }
 
         /**
          * Extract and capitalize username from email
+         * Same logic as TeamFragment
          */
         private String extractUsernameFromEmail(String email) {
             if (email != null && email.contains("@")) {
