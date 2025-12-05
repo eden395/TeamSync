@@ -36,7 +36,7 @@
                 android:id="@+id/memberNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Christine Fel"
+                android:text="Team Member"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />

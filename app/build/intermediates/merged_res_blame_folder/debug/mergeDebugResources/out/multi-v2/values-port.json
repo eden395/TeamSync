@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.student.teamsync.app-mergeDebugResources-3:/values-port/values-port.xml",
+            "outputFile": "com.example.studentprojecttracker.app-mergeDebugResources-3:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\682f94ddfb24223dede1c757e9d1568b\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\bf8aa68fbdff29970c1bde541a9fc32c\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

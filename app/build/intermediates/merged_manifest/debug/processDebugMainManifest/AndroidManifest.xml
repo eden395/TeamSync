@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.student.teamsync"
+    package="com.example.studentprojecttracker"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,13 +10,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <permission
-        android:name="com.student.teamsync.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.example.studentprojecttracker.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.student.teamsync.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.example.studentprojecttracker.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -32,13 +36,13 @@
         android:testOnly="true"
         android:theme="@style/Theme.TeamSync" >
         <activity
-            android:name="com.student.teamsync.activities.MainActivity"
+            android:name="com.example.studentprojecttracker.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.student.teamsync.activities.SignUpActivity"
+            android:name="com.example.studentprojecttracker.activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name="com.student.teamsync.activities.LoginActivity"
+            android:name="com.example.studentprojecttracker.activities.LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,23 +50,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.student.teamsync.activities.AddTaskActivity" />
+        <activity android:name="com.example.studentprojecttracker.activities.AddTaskActivity" />
         <activity
-            android:name="com.student.teamsync.activities.RoleSelectionActivity"
+            android:name="com.example.studentprojecttracker.activities.RoleSelectionActivity"
             android:exported="false" />
         <activity
-            android:name="com.student.teamsync.activities.ProjectsDashboardActivity"
+            android:name="com.example.studentprojecttracker.activities.ProjectsDashboardActivity"
             android:exported="false" />
         <activity
-            android:name="com.student.teamsync.activities.AdvisorProjectViewActivity"
+            android:name="com.example.studentprojecttracker.activities.AdvisorProjectViewActivity"
             android:exported="false" />
         <activity
-            android:name="com.student.teamsync.activities.ProfileActivity"
+            android:name="com.example.studentprojecttracker.activities.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.studentprojecttracker.activities.EditProfileActivity"
             android:exported="false" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.student.teamsync.androidx-startup"
+            android:authorities="com.example.studentprojecttracker.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
@@ -180,7 +187,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.student.teamsync.firebaseinitprovider"
+            android:authorities="com.example.studentprojecttracker.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />

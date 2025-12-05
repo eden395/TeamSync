@@ -9,6 +9,25 @@
       "client_info": {
         "mobilesdk_app_id": "1:945185033406:android:b11e0251ea5de65085a2ef",
         "android_client_info": {
+          "package_name": "com.example.studentprojecttracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV6cRnh4Nveyb7Z2Kd9707JCfZwD2ycpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945185033406:android:af639f933bd34d9e85a2ef",
+        "android_client_info": {
           "package_name": "com.student.teamsync"
         }
       },

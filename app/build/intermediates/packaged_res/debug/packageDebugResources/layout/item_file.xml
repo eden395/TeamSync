@@ -21,7 +21,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_file"
-            android:tint="@color/primary"
+            app:tint="@color/primary"
             android:contentDescription="File" />
 
         <!-- File Info -->
@@ -57,7 +57,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_download"
-            android:tint="@color/primary"
+            app:tint="@color/primary"
             android:contentDescription="Download"
             android:clickable="true"
             android:focusable="true" />

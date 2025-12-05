@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.student.teamsync.app-mergeDebugResources-3:/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "com.example.studentprojecttracker.app-mergeDebugResources-3:/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\3cf0f856761f0094cd38447904e52501\\transformed\\core-1.9.0\\res\\values-en-rCA\\values-en-rCA.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "36",
-                        "startColumns": "4",
-                        "startOffsets": "3474",
-                        "endColumns": "100",
-                        "endOffsets": "3570"
-                    }
-                },
-                {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\16ad8dbabf8c61c3ab3667691ea40e78\\transformed\\browser-1.4.0\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\1d80ea0ea38f742f3d51112655dde248\\transformed\\browser-1.4.0\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\682f94ddfb24223dede1c757e9d1568b\\transformed\\appcompat-1.6.1\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\e6551d7f7bc3160895775f79796e7e98\\transformed\\core-1.9.0\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "36",
+                        "startColumns": "4",
+                        "startOffsets": "3474",
+                        "endColumns": "100",
+                        "endOffsets": "3570"
+                    }
+                },
+                {
+                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\bf8aa68fbdff29970c1bde541a9fc32c\\transformed\\appcompat-1.6.1\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\9fe18cd694b8145c72b01f409073c502\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\4be502929d907f3cf41eb6dc37d7eb60\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.student.teamsync.app-mergeDebugResources-3:/values-v16/values-v16.xml",
+            "outputFile": "com.example.studentprojecttracker.app-mergeDebugResources-3:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\682f94ddfb24223dede1c757e9d1568b\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\bf8aa68fbdff29970c1bde541a9fc32c\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\3cf0f856761f0094cd38447904e52501\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
+                    "source": "D:\\gradle\\caches\\8.11.1\\transforms\\e6551d7f7bc3160895775f79796e7e98\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

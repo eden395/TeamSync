@@ -1,32 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white">
 
-    <!-- Team Members List -->
+    <!-- RecyclerView for Team Members -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/teamRecyclerView"
+        android:id="@+id/rvTeamMembers"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:padding="16dp"
-        android:clipToPadding="false" />
+        android:clipToPadding="false"
+        android:visibility="visible" />
 
-    <!-- Add Member Button (Only visible for leaders) -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addMemberButton"
-        android:layout_width="match_parent"
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/add_member"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/primary"
-        android:visibility="gone"
-        app:cornerRadius="8dp"
-        app:icon="@android:drawable/ic_input_add"
-        app:iconTint="@color/white" />
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
-</LinearLayout>
+    <!-- Empty View -->
+    <LinearLayout
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_group"
+            android:alpha="0.3"
+            app:tint="@color/text_secondary"
+            android:contentDescription="No team members" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No team members yet"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Add members to start collaborating"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary" />
+    </LinearLayout>
+
+</FrameLayout>

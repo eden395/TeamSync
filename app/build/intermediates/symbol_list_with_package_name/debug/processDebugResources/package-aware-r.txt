@@ -1,4 +1,4 @@
-com.student.teamsync
+com.example.studentprojecttracker
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -3010,6 +3010,7 @@ drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
 drawable badge_ahead
+drawable badge_behind
 drawable badge_high
 drawable badge_low
 drawable badge_medium
@@ -3024,6 +3025,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable circle_background
+drawable circle_button_background
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -3057,13 +3059,16 @@ drawable ic_attach
 drawable ic_avatar_placeholder
 drawable ic_back
 drawable ic_calendar
+drawable ic_camera
 drawable ic_chats
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_download
 drawable ic_edit
+drawable ic_email
 drawable ic_file
 drawable ic_files
+drawable ic_group
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -3080,6 +3085,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_other_sign_in
 drawable ic_passkey
 drawable ic_password
+drawable ic_person
 drawable ic_profile
 drawable ic_search_black_24
 drawable ic_send
@@ -3088,6 +3094,7 @@ drawable ic_team
 drawable ic_team_placeholder
 drawable ic_upload
 drawable img_file_icon
+drawable info_background
 drawable input_background
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3235,7 +3242,6 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
-id addMemberButton
 id addTaskButton
 id adjust_height
 id adjust_width
@@ -3278,6 +3284,7 @@ id btnAdd
 id btnBack
 id btnCancel
 id btnCancelProject
+id btnChangeAvatar
 id btnChangePassword
 id btnCreateProject
 id btnDownload
@@ -3288,6 +3295,7 @@ id btnProfile
 id btnProjects
 id btnReminders
 id btnSave
+id btnSaveProfile
 id btnTaskMenu
 id buttonPanel
 id cache_measures
@@ -3374,15 +3382,21 @@ id elastic
 id emailEditText
 id emailInputLayout
 id embed
+id emptyView
 id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
 id etAdditionalNotes
+id etConfirmPassword
 id etCourseCode
+id etCurrentPassword
+id etDisplayName
 id etDueDate
+id etEmail
 id etMemberEmail
 id etMemberName
+id etNewPassword
 id etProjectDueDate
 id etProjectName
 id etTaskName
@@ -3412,6 +3426,7 @@ id frost
 id fullscreen_header
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id gone
 id graph
 id graph_wrap
@@ -3432,6 +3447,7 @@ id ignore
 id ignoreRequest
 id image
 id imgAvatar
+id imgEditAvatar
 id imgFileIcon
 id imgProfileAvatar
 id immediateStop
@@ -3604,6 +3620,7 @@ id rounded
 id row_index_key
 id rvMemberProgress
 id rvProjects
+id rvTeamMembers
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3690,7 +3707,6 @@ id tag_window_insets_animation_callback
 id taskCheckbox
 id tasksAssignedText
 id tasksRecyclerView
-id teamRecyclerView
 id termsText
 id text
 id text2
@@ -3890,6 +3906,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_task
 layout activity_advisor_projects_view
+layout activity_edit_profile
 layout activity_login
 layout activity_main
 layout activity_profile
@@ -3916,6 +3933,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dialog_add_member
 layout dialog_add_project
+layout dialog_change_password
 layout fragment_chats
 layout fragment_files
 layout fragment_profile

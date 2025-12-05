@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.student.teamsync'
+    namespace 'com.example.studentprojecttracker'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.student.teamsync"
+        applicationId "com.example.studentprojecttracker"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -55,4 +55,17 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Firebase Storage for image upload
+    implementation 'com.google.firebase:firebase-storage:20.3.0'
+
+    // Glide for image loading and caching
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    // Firebase Auth (if not already added)
+    implementation 'com.google.firebase:firebase-auth:22.3.0'
+
+    // Firebase Firestore (if not already added)
+    implementation 'com.google.firebase:firebase-firestore:24.10.0'
 }
